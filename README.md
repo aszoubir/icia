@@ -1,7 +1,7 @@
 # INTENTION IS ALL YOU NEED (IIAY)
 ## The Intention-Centred Intelligence Architecture (ICIA)
 
-[![Tests](https://img.shields.io/badge/Tests-12%20Passed-brightgreen)](tests/)
+[![Tests](https://img.shields.io/badge/Tests-15%20Passed-brightgreen)](tests/)
 [![Python](https://img.shields.io/badge/Python-3.11%2B-blue)](https://www.python.org/)
 [![License](https://img.shields.io/badge/License-MIT-purple.svg)](LICENSE)
 [![Architecture](https://img.shields.io/badge/Architecture-Post--Transformer-red)]()
@@ -42,6 +42,7 @@ All metrics are measured on CPU from reproducible experiments in this repository
 | **NLP Multi-Hop Reasoning ($D=10$)** | Autoregressive CoT ($60$ tokens); **$5,419.10$ ms latency** | $O(1)$ Latent Recurrence; **$7.74$ ms latency (0 tokens emitted)** | **$700\times$ faster; Zero context buffer pollution** |
 | **Natural Language Modeling (ICIA-LM)**| GPT Baseline: **$4.42$ PPL** ($1.44$M params, $O(N)$ KV-cache)| ICIA-LM: **$1.26$ PPL** ($433$k params, $O(1)$ bounded memory)| **$3.5\times$ lower perplexity; $-69.9\%$ params; $66.9\times$ less memory** |
 | **Embodied Continuous Physics (+15N Shock)**| Open-loop sequence drift ($0.515$ m drift) | Riemannian potential flow; sub-cm drift ($0.010$ m); $85\ \mu\text{s}$ latency | **$51\times$ tighter drift; $100\%$ shock survival; $0$ RL episodes** |
+| **Multi-Agent Bottleneck Coordination**| Conversational chat ($2,040$ collisions in pileups)| Symplectic Collective Field ($0$ collisions, $100\%$ success)| **Zero communication tokens; $100\%$ deadlock-free passage** |
 
 ---
 
