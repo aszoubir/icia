@@ -1,0 +1,25 @@
+{
+  "dpgp_report": {
+    "4": {
+      "sat_attn_mass_to_goal": 0.16666712583857432,
+      "divre_mean_error_norm": 0.11265786258597128
+    },
+    "16": {
+      "sat_attn_mass_to_goal": 0.055555409608173706,
+      "divre_mean_error_norm": 0.13282203324626426
+    },
+    "64": {
+      "sat_attn_mass_to_goal": 0.015151549781931204,
+      "divre_mean_error_norm": 0.6144994326630786
+    },
+    "128": {
+      "sat_attn_mass_to_goal": 0.007692373150547798,
+      "divre_mean_error_norm": 2.105041772774762
+    }
+  },
+  "constraint_spike_test": {
+    "pre_flip_error": 0.11242794464488362,
+    "spike_error": 0.16061072184119107,
+    "post_flip_error": 0.1605630315318845
+  }
+}
