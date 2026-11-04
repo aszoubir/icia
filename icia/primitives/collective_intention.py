@@ -56,30 +56,39 @@ class CollectiveIntentionField:
         if ai.reached_goal:
             return np.zeros_like(ai.pos)
 
-        # 1. Teleological Goal Potential Pull
-        diff_g = ai.goal - ai.pos
+        # Target heading: steer toward corridor entrance if entering from outside
+        if abs(ai.pos[0]) > 2.1 and (ai.pos[0] * ai.goal[0] < 0):
+            effective_target = np.array([2.1 * np.sign(ai.pos[0]), 0.0])
+        else:
+            effective_target = ai.goal
+
+        diff_g = effective_target - ai.pos
         dist_g = np.linalg.norm(diff_g)
-        if dist_g < 0.1:
+        if np.linalg.norm(ai.pos - ai.goal) < 0.15:
             ai.reached_goal = True
             return np.zeros_like(ai.pos)
 
-        grad_goal = (diff_g / dist_g) * min(ai.max_speed, dist_g * 1.5)
+        grad_goal = (diff_g / (dist_g + 1e-6)) * min(ai.max_speed, dist_g * 1.5)
 
-        # 2. Longitudinal Priority Arbitration in Narrow Bottlenecks
-        # Lower-priority agent yields before entering the bottleneck if higher-priority agent is inside
-        in_bottleneck_zone = abs(ai.pos[0]) < 2.0
+        # 2. Longitudinal Priority Arbitration in Narrow Bottlenecks & Intersections
+        # Lower-priority agent yields into lateral waiting bay until higher-priority agent clears
+        dist_to_center = np.linalg.norm(ai.pos)
         for aj in self.agents:
             if aj.agent_id != ai.agent_id and not aj.reached_goal:
-                # If oncoming agent has higher priority and is entering/inside bottleneck
-                is_oncoming = (ai.pos[0] * aj.pos[0] < 0) or (np.dot(diff_g, aj.goal - aj.pos) < 0)
-                if is_oncoming and aj.priority > ai.priority:
-                    # Yield outside the bottleneck (x >= 2.4 or x <= -2.4)
-                    if (ai.goal[0] > 0 and ai.pos[0] < -2.2) or (ai.goal[0] < 0 and ai.pos[0] > 2.2):
-                        if abs(aj.pos[0]) < 2.4:
-                            # Step aside to lateral shoulder and halt
-                            lateral_target = 0.45 if ai.agent_id % 2 == 0 else -0.45
-                            dy = lateral_target - ai.pos[1]
-                            return np.array([0.0, np.clip(dy * 2.0, -0.8, 0.8)])
+                if aj.priority > ai.priority:
+                    aj_dist_center = np.linalg.norm(aj.pos)
+                    # If higher-priority agent is inside or crossing central zone
+                    if aj_dist_center < 2.5 and dist_to_center >= 2.0:
+                        # Step aside into lateral waiting bay (orthogonal to motion)
+                        lateral_sign = 1.0 if ai.agent_id % 2 == 1 else -1.0
+                        if abs(ai.pos[0]) >= abs(ai.pos[1]):
+                            target_bay = np.array([ai.pos[0], 0.9 * lateral_sign])
+                        else:
+                            target_bay = np.array([0.9 * lateral_sign, ai.pos[1]])
+                        diff_bay = target_bay - ai.pos
+                        if np.linalg.norm(diff_bay) > 0.05:
+                            return (diff_bay / np.linalg.norm(diff_bay)) * 0.8
+                        return np.zeros_like(ai.pos)
 
         # 2. Inter-Agent Collision Avoidance Barrier
         grad_avoidance = np.zeros_like(ai.pos)
@@ -93,16 +102,15 @@ class CollectiveIntentionField:
             if dist_agents < (ai.radius + aj.radius):
                 self.collisions_recorded += 1
 
-            if dist_agents < min_dist:
+            if dist_agents < min_dist and not aj.reached_goal:
                 overlap = min_dist - dist_agents
                 # Radial log-barrier repulsive force
                 radial = (diff_agents / (dist_agents + 1e-6)) * (overlap / (dist_agents - (ai.radius + aj.radius) + 1e-4))
-                # Symplectic gyroscopic curl term: breaks head-on symmetry via lateral circulation
+                # Symplectic gyroscopic curl term: only for oncoming agents
                 tangential = np.array([-diff_agents[1], diff_agents[0]]) / (dist_agents + 1e-6)
                 sign = 1.0 if ai.agent_id < aj.agent_id else -1.0
-                # Scale by priority ratio to arbitrate bottlenecks
                 p_ratio = aj.priority / (ai.priority + 1e-6)
-                grad_avoidance += (radial + sign * 0.9 * tangential) * (1.0 + p_ratio)
+                grad_avoidance += (radial + sign * 0.5 * tangential) * (1.0 + p_ratio)
 
         # 3. Environmental Obstacle Barrier
         grad_obs = np.zeros_like(ai.pos)

@@ -69,7 +69,7 @@ def run_uncoordinated_baseline(env: BottleneckCorridorEnv, max_steps: int = 300)
     }
 
 
-def run_icia_collective_coordination(env: BottleneckCorridorEnv, max_steps: int = 300) -> Dict[str, Any]:
+def run_icia_collective_coordination(env: BottleneckCorridorEnv, max_steps: int = 450) -> Dict[str, Any]:
     """
     Evaluates ICIA Collective Intention Field with continuous Riemannian barrier coupling.
     """

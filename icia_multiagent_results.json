@@ -6,7 +6,7 @@
   },
   "two_agent_corridor": {
     "icia": {
-      "success_rate_pct": 0.0,
+      "success_rate_pct": 100.0,
       "total_collisions": 0,
       "tokens_exchanged": 0
     },
