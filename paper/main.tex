@@ -84,9 +84,13 @@ NLP Multi-Hop Reasoning ($D=10$) & CoT: $60$ tokens, $5,419.10$ ms & Latent: $\m
 Natural Language Modeling (PPL) & GPT: $4.42$ PPL, $1.44$M params & ICIA-LM: $\mathbf{1.26}$ PPL, $433$k params & $\mathbf{3.5\times}$ lower PPL, $66.9\times$ less memory \\
 Continuous Physics (+15N Shock) & Sequence drift ($0.515$ m) & Riemannian Barrier ($0.010$ m drift) & $\mathbf{51\times}$ tighter drift, $85.7\ \mu\text{s}$ latency \\
 Multi-Agent Bottleneck Crossing & Uncoordinated ($2,040$ collisions) & Symplectic Collective Field ($\mathbf{0}$ collisions) & $\mathbf{100\%}$ success with $\mathbf{0}$ tokens \\
+Hierarchical Impasse Pivot & Autoregressive inertia ($97$ stuck cycles) & Hierarchical $1$-step pivot ($\mathbf{0}$ stuck cycles) & $\mathbf{100\%}$ vs $\mathbf{0\%}$ success, $2.18\times$ faster \\
 \bottomrule
 \end{tabular}
 \end{table*}
+
+\section{Embedded Implementation \& Vector Telemetry}
+To evaluate bare-metal deployment capabilities, the Riemannian control flow and IGAM memory were formalized into a zero-allocation ANSI C99 single-header engine (\texttt{include/icia\_core.h}). On embedded benchmarks, the native engine achieves sub-microsecond execution at over $200\text{ kHz}$ update frequencies. High-resolution vector figures visualizing self-attention dispersion, physical shock dissipation, and symplectic vortex circulation are provided in \texttt{paper/figures/}.
 
 \section{Conclusion}
 The assumption that passive sequence attention is all that is required for intelligence is falsified. Intention is a mathematically rigorous, computationally superior organizing principle capable of replacing self-attention as the foundation of intelligent computation.

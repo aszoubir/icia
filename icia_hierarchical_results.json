@@ -1,0 +1,13 @@
+{
+  "trials": 20,
+  "autoregressive_baseline": {
+    "success_rate": 0.0,
+    "avg_steps": 120.0,
+    "avg_stuck_cycles": 97.0
+  },
+  "hierarchical_icia": {
+    "success_rate": 1.0,
+    "avg_steps": 55.0,
+    "avg_replans": 1.0
+  }
+}

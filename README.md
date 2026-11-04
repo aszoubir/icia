@@ -1,8 +1,9 @@
 # INTENTION IS ALL YOU NEED (IIAY)
 ## The Intention-Centred Intelligence Architecture (ICIA)
 
-[![Tests](https://img.shields.io/badge/Tests-15%20Passed-brightgreen)](tests/)
+[![Tests](https://img.shields.io/badge/Tests-23%20Passed-brightgreen)](tests/)
 [![Python](https://img.shields.io/badge/Python-3.11%2B-blue)](https://www.python.org/)
+[![C99](https://img.shields.io/badge/Embedded-MISRA--C99-orange)](include/icia_core.h)
 [![License](https://img.shields.io/badge/License-MIT-purple.svg)](LICENSE)
 [![Architecture](https://img.shields.io/badge/Architecture-Post--Transformer-red)]()
 
@@ -41,8 +42,9 @@ All metrics are measured on CPU from reproducible experiments in this repository
 | **Unannounced Obstacle (Dynamic Wall)**| Blind open-loop execution; **$0\%$ Success (79 crashes)** | Discrepancy Gate ($\|\mathcal{E}_t\| > \tau$); **$100\%$ Success (0 crashes)** | **Zero-shot 1-step replan; $100\%$ collision avoidance** |
 | **NLP Multi-Hop Reasoning ($D=10$)** | Autoregressive CoT ($60$ tokens); **$5,419.10$ ms latency** | $O(1)$ Latent Recurrence; **$7.74$ ms latency (0 tokens emitted)** | **$700\times$ faster; Zero context buffer pollution** |
 | **Natural Language Modeling (ICIA-LM)**| GPT Baseline: **$4.42$ PPL** ($1.44$M params, $O(N)$ KV-cache)| ICIA-LM: **$1.26$ PPL** ($433$k params, $O(1)$ bounded memory)| **$3.5\times$ lower perplexity; $-69.9\%$ params; $66.9\times$ less memory** |
-| **Embodied Continuous Physics (+15N Shock)**| Open-loop sequence drift ($0.515$ m drift) | Riemannian potential flow; sub-cm drift ($0.010$ m); $85\ \mu\text{s}$ latency | **$51\times$ tighter drift; $100\%$ shock survival; $0$ RL episodes** |
+| **Continuous Physics (+15N Shock)**| Open-loop sequence drift ($0.515$ m drift) | Riemannian potential flow; sub-cm drift ($0.010$ m); $85\ \mu\text{s}$ latency | **$51\times$ tighter drift; $100\%$ shock survival; $0$ RL episodes** |
 | **Multi-Agent Bottleneck Coordination**| Conversational chat ($2,040$ collisions in pileups)| Symplectic Collective Field ($0$ collisions, $100\%$ success)| **Zero communication tokens; $100\%$ deadlock-free passage** |
+| **Hierarchical Impasse Resolution**| Autoregressive inertia ($97$ stuck cycles, $0\%$ success)| Dynamic Sub-goal Re-routing ($0$ stuck cycles, $100\%$ success)| **$1$-step pivot; $0$ wasted tokens; $2.18\times$ faster** |
 
 ---
 
@@ -130,6 +132,9 @@ The complete scientific documentation comprises 21 foundational specifications a
 19. [`19_icia_lm_empirical_report.md`](docs/19_icia_lm_empirical_report.md): Phase 5 Language Model Empirical Report (1.26 PPL, 66.9x less memory).
 20. [`20_continuous_physics_and_embodied_control.md`](docs/20_continuous_physics_and_embodied_control.md): Continuous Riemannian control and non-linear dynamics specification.
 21. [`21_continuous_physics_empirical_report.md`](docs/21_continuous_physics_empirical_report.md): Phase 6 Embodied Control Empirical Report (100% shock survival, 85 microsecond latency).
+22. [`22_collective_intention_and_multiagent_coordination.md`](docs/22_collective_intention_and_multiagent_coordination.md): Collective Intention Algebra & Symplectic Vorticity.
+23. [`23_multiagent_coordination_report.md`](docs/23_multiagent_coordination_report.md): Phase 7 Multi-Agent Benchmark Report (0 collisions, 0 communication tokens).
+24. [`24_hierarchical_intention_report.md`](docs/24_hierarchical_intention_report.md): Phase 8 Hierarchical Decomposition Report (1-step pivot vs autoregressive inertia).
 
 ---
 
@@ -137,21 +142,27 @@ The complete scientific documentation comprises 21 foundational specifications a
 
 ```
 AI/
-├── docs/                        # 21 Foundational scientific specifications & reports
+├── .github/workflows/ci.yml     # Multi-OS Matrix CI/CD Pipeline
+├── dist/                        # Standalone distribution wheel and source tarball
+├── docs/                        # 24 Foundational scientific specifications & reports
+├── include/
+│   └── icia_core.h              # Zero-allocation ANSI C99 single-header embedded engine
 ├── icia/                        # Core Python architecture package
-│   ├── primitives/              # Mathematical primitives (IntentionState, IGAM)
-│   ├── models/                  # ICIA Engines (DIVRE, HISSA, WorldModel, ICIA-LM, Controllers)
-│   ├── tasks/                   # Benchmark suites (DPGP, ContinuousCartPole, Navigation)
+│   ├── cli.py                   # Unified console executable (`icia` command)
+│   ├── primitives/              # Mathematical primitives (IntentionState, IGAM, CollectiveField)
+│   ├── models/                  # ICIA Engines (DIVRE, HISSA, WorldModel, ICIA-LM, Hierarchical)
+│   ├── native/                  # Sub-microsecond binary C-types interface
+│   ├── tasks/                   # Benchmark suites (DPGP, CartPole, Navigation, Hierarchical)
 │   ├── nlp/                     # NLP Subsystem (ByteTokenizer, Corpus Generator, Latent Reasoner)
-│   └── experiments/             # Master benchmark runners (Phases 1-6)
-├── tests/                       # Automated pytest suite (12 passing unit tests)
-├── demo.py                      # Interactive terminal demonstration suite
-├── dashboard.html               # Interactive Generative UI dashboard
-├── icia_continuous_control_results.json
-├── icia_lm_benchmark_results.json
-├── icia_nlp_benchmark_results.json
-├── icia_phase3_benchmark_results.json
-├── icia_phase2_benchmark_results.json
+│   ├── web/                     # Live HTTP server & API endpoints
+│   └── experiments/             # Master benchmark runners (Phases 1-8)
+├── paper/                       # Formal NeurIPS/ICLR LaTeX manuscript & vector figures
+│   ├── figures/                 # Camera-ready vector figures (PDF & PNG)
+│   ├── main.tex                 # Academic preprint manuscript
+│   └── references.bib           # Complete bibliography
+├── tests/                       # Automated pytest suite (23 passing unit & integration tests)
+├── dashboard.html               # Interactive Generative UI dashboard (7 interactive modules)
+├── pyproject.toml               # Modern PEP 517/621 build configuration
 └── README.md                    # Project documentation
 ```
 

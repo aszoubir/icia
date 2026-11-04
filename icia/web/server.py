@@ -13,14 +13,21 @@ import numpy as np
 from icia.tasks.continuous_cartpole_env import ContinuousCartPoleEnv
 from icia.models.continuous_icia_controller import ContinuousICIAController
 from icia.primitives.collective_intention import AgentState, CollectiveIntentionField
+from icia.tasks.hierarchical_foraging import HierarchicalForagingEnv
+from icia.experiments.run_hierarchical_experiment import build_icia_controller
 
 # Workspace Paths
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 DASHBOARD_PATH = os.path.join(PROJECT_ROOT, "dashboard.html")
 
-# Global Controller & Physics Instances
+# Global Controller & State Instances
 physics_env = ContinuousCartPoleEnv()
 physics_controller = ContinuousICIAController()
+
+hierarchical_env = HierarchicalForagingEnv(stochastic_jam=True)
+hierarchical_controller = build_icia_controller()
+hierarchical_state, hierarchical_facts = hierarchical_env.reset()
+hierarchical_disc = 0.0
 
 
 class ICIAHTTPRequestHandler(BaseHTTPRequestHandler):
@@ -58,12 +65,15 @@ class ICIAHTTPRequestHandler(BaseHTTPRequestHandler):
             self._send_json({
                 "status": "online",
                 "architecture": "ICIA (Intention-Centred Intelligence Architecture)",
-                "engines": ["ContinuousPhysics", "CollectiveIntention", "LatentReasoner"]
+                "version": "0.1.0",
+                "engines": ["ContinuousPhysics", "CollectiveIntention", "HierarchicalIntention", "LatentReasoner"]
             })
         else:
             self.send_error(404, "Path not found")
 
     def do_POST(self):
+        global hierarchical_state, hierarchical_facts, hierarchical_disc, hierarchical_controller
+
         content_len = int(self.headers.get("Content-Length", 0))
         body = self.rfile.read(content_len).decode("utf-8") if content_len > 0 else "{}"
         try:
@@ -90,8 +100,79 @@ class ICIAHTTPRequestHandler(BaseHTTPRequestHandler):
                 "done": bool(done)
             })
 
+        elif self.path == "/api/multiagent_step":
+            # Compute collective swarm dynamics step
+            raw_agents = req_data.get("agents", [])
+            obstacles_raw = req_data.get("obstacles", [])
+            obs_tuples = [(np.array(o[:2], dtype=np.float32), float(o[2]) if len(o) > 2 else 0.5) for o in obstacles_raw]
+
+            agent_objs = []
+            for i, a in enumerate(raw_agents):
+                agent_objs.append(AgentState(
+                    agent_id=i,
+                    initial_pos=np.array(a.get("pos", [0.0, 0.0]), dtype=np.float64),
+                    goal_pos=np.array(a.get("goal", [0.0, 0.0]), dtype=np.float64),
+                    priority=float(a.get("priority", 1.0))
+                ))
+
+            field = CollectiveIntentionField(
+                agents=agent_objs,
+                obstacles=obs_tuples,
+                dt=0.05
+            )
+            step_res = field.step()
+
+            self._send_json({
+                "agents": [
+                    {
+                        "id": ag.agent_id,
+                        "pos": ag.pos.tolist(),
+                        "goal": ag.goal.tolist(),
+                        "priority": ag.priority,
+                        "reached_goal": ag.reached_goal
+                    }
+                    for ag in field.agents
+                ],
+                "collisions": step_res["collisions"],
+                "all_reached": step_res["all_reached"]
+            })
+
+        elif self.path == "/api/hierarchical_step":
+            # Step the hierarchical task
+            if req_data.get("reset", False):
+                hierarchical_state, hierarchical_facts = hierarchical_env.reset()
+                hierarchical_controller = build_icia_controller()
+                hierarchical_disc = 0.0
+
+            action, telemetry = hierarchical_controller.compute_action(
+                hierarchical_state, hierarchical_facts, discrepancy=hierarchical_disc
+            )
+            next_state, hierarchical_disc, done, info = hierarchical_env.step(action)
+            hierarchical_state = next_state
+            hierarchical_facts = info["facts"]
+
+            subgoals_summary = [
+                {
+                    "id": sg.id,
+                    "desc": sg.description,
+                    "target": sg.target_state.tolist(),
+                    "completed": sg.is_completed,
+                    "invalidated": sg.is_invalidated
+                }
+                for sg in hierarchical_controller.sub_goals
+            ]
+
+            self._send_json({
+                "pos": hierarchical_state.tolist(),
+                "active_subgoal": telemetry["active_subgoal"],
+                "impasse": telemetry["impasse"],
+                "replan": telemetry["replan"],
+                "facts": hierarchical_facts,
+                "subgoals": subgoals_summary,
+                "done": bool(done)
+            })
+
         elif self.path == "/api/deliberate":
-            # Return latent deliberation steps
             prompt = req_data.get("prompt", "Set alpha = 14. What is alpha?")
             steps = [
                 {"step": 1, "focus": "alpha", "confidence": 0.45, "scratchpad_tokens": 0},
