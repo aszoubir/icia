@@ -1,0 +1,15 @@
+{
+  "broken_project": {
+    "is_valid": false,
+    "cycles_count": 1,
+    "unresolved_count": 1,
+    "explanation": "CRITICAL: 1 circular import cycle(s) detected: [['auth_service', 'database', 'auth_service']] | CRITICAL: 1 unresolved cross-file symbol(s): [{'caller_module': 'api_gateway', 'target_module': 'auth_service', 'missing_symbol': 'authenticate_user'}]"
+  },
+  "repaired_project": {
+    "is_valid": true,
+    "cycles_count": 0,
+    "unresolved_count": 0,
+    "explanation": "All project-scale multi-file AST dependency invariants strictly satisfied."
+  },
+  "verification_latency_ms": 1.5147000085562468
+}

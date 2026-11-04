@@ -1,7 +1,7 @@
 # INTENTION IS ALL YOU NEED (IIAY)
 ## The Intention-Centred Intelligence Architecture (ICIA)
 
-[![Tests](https://img.shields.io/badge/Tests-43%20Passed-brightgreen)](tests/)
+[![Tests](https://img.shields.io/badge/Tests-47%20Passed-brightgreen)](tests/)
 [![Python](https://img.shields.io/badge/Python-3.11%2B-blue)](https://www.python.org/)
 [![C99](https://img.shields.io/badge/Embedded-MISRA--C99-orange)](include/icia_core.h)
 [![License](https://img.shields.io/badge/License-MIT-purple.svg)](LICENSE)
@@ -51,6 +51,8 @@ All metrics are measured on CPU from reproducible experiments in this repository
 | **Hardware RTL FPGA Synthesis**| Unsuitable for bare metal (millisecond latencies)| 2-stage pipelined Q16.16 Verilog Core| **$5.0\text{ ns}$ latency; 1 output/clock at $200\text{ MHz}$** |
 | **MBPP Negative Constraint Coding**| Negation blindness ($0\%$ adherence, $0\%$ pass rate)| AST Invariant Barrier flow ($100\%$ adherence, $100\%$ pass)| **Zero negation blindness; $100\%$ functional success** |
 | **Hybrid Invariant Governor**| Foundation hallucination & negation failure ($0\%$ pass)| Real-time teleological interception ($100\%$ pass rate)| **$10$ violations repaired; Soft-slack Pareto relaxation** |
+| **T-MCTS Non-Convex Search**| Greedy Flow ($0\%$ success, trapped in dead end)| Teleological MCTS ($100\%$ detour convergence)| **$212$ barrier paths pruned; Escapes concave local traps** |
+| **Multi-File AST Invariants**| Unchecked refactor ($1$ cycle, $1$ missing symbol)| Project Dependency Graph ($100\%$ valid ASTs)| **$1.51\text{ ms}$ repo-wide verification; Zero circular deadlocks** |
 
 ---
 
@@ -127,13 +129,19 @@ python -m icia.experiments.run_constrained_coding_benchmark
 
 # Phase 13: Hybrid Foundation Governor & Soft-Slack Relaxation
 python -m icia.experiments.run_hybrid_governor_experiment
+
+# Phase 14: Teleological Monte Carlo Tree Search (T-MCTS)
+python -m icia.experiments.run_mcts_experiment
+
+# Phase 15: Repository-Scale Multi-File AST Dependency Invariants
+python -m icia.experiments.run_project_graph_experiment
 ```
 
 ---
 
 ## 5. Research Documentation Index
 
-The complete scientific documentation comprises 29 foundational specifications and master empirical reports in [`docs/`](docs/):
+The complete scientific documentation comprises 31 foundational specifications and master empirical reports in [`docs/`](docs/):
 
 1. [`01_foundational_definition_of_intention.md`](docs/01_foundational_definition_of_intention.md): Mathematical 8-tuple formalization $\mathcal{I}_t$.
 2. [`02_critical_scientific_assessment.md`](docs/02_critical_scientific_assessment.md): Adversarial critique of Transformers.
@@ -164,6 +172,8 @@ The complete scientific documentation comprises 29 foundational specifications a
 27. [`27_wasm_and_hardware_rtl_synthesis.md`](docs/27_wasm_and_hardware_rtl_synthesis.md): Phase 11 WebAssembly & Hardware RTL Acceleration Report (413-byte Wasm, 5ns Verilog core).
 28. [`28_negative_constraint_coding_benchmark.md`](docs/28_negative_constraint_coding_benchmark.md): Phase 12 Negative Constraint Coding & Negation Blindness Resolution (100% adherence, 100% pass).
 29. [`29_hybrid_foundation_and_relaxed_barriers.md`](docs/29_hybrid_foundation_and_relaxed_barriers.md): Phase 13 Hybrid Foundation Governor & Soft-Slack Lagrangian Relaxation (100% governed pass rate).
+30. [`30_teleological_mcts_test_time_search.md`](docs/30_teleological_mcts_test_time_search.md): Phase 14 Teleological Monte Carlo Tree Search over W_theta (Non-convex concave trap navigation).
+31. [`31_repository_scale_ast_dependency_invariants.md`](docs/31_repository_scale_ast_dependency_invariants.md): Phase 15 Repository-Scale Multi-File AST Dependency Graph Invariants (Zero circular imports).
 
 ---
 
@@ -173,7 +183,7 @@ The complete scientific documentation comprises 29 foundational specifications a
 AI/
 ├── .github/workflows/ci.yml     # Multi-OS Matrix CI/CD Pipeline
 ├── dist/                        # Standalone distributions (wheel, tarball, and NeurIPS submission zip)
-├── docs/                        # 29 Foundational scientific specifications & reports
+├── docs/                        # 31 Foundational scientific specifications & reports
 ├── hardware/                    # Synthesizable Verilog 2001 FPGA RTL core (5ns decision latency)
 │   ├── icia_riemannian_core.v   # 2-stage pipelined Q16.16 hardware engine
 │   └── tb_icia_riemannian_core.v# Verilog simulation testbench
@@ -182,19 +192,19 @@ AI/
 ├── icia/                        # Core Python architecture package
 │   ├── cli.py                   # Unified console executable (`icia` command)
 │   ├── primitives/              # Mathematical primitives (IntentionState, IGAM, CollectiveField, RelaxedBarriers)
-│   ├── models/                  # ICIA Engines (DIVRE, HISSA, WorldModel, ICIA-LM, Hierarchical, HybridGovernor)
-│   ├── code/                    # AST Invariant Engine & NL Intention Programmer
+│   ├── models/                  # ICIA Engines (DIVRE, HISSA, WorldModel, ICIA-LM, Hierarchical, HybridGovernor, TeleologicalMCTS)
+│   ├── code/                    # AST Invariant Engine, NL Intention Programmer, ProjectDependencyGraph
 │   ├── hardware/                # Cycle-accurate Q16.16 hardware pipeline simulator
 │   ├── native/                  # Sub-microsecond binary C-types & WebAssembly emitter
-│   ├── tasks/                   # Benchmark suites (DPGP, CartPole, Navigation, Hierarchical, Code, MBPP)
+│   ├── tasks/                   # Benchmark suites (DPGP, CartPole, Navigation, Hierarchical, Code, MBPP, Labyrinth, MultiFile)
 │   ├── nlp/                     # NLP Subsystem (ByteTokenizer, Corpus Generator, Latent Reasoner)
 │   ├── web/                     # Live HTTP server & 413-byte WebAssembly binary
-│   └── experiments/             # Master benchmark runners (Phases 1-13)
+│   └── experiments/             # Master benchmark runners (Phases 1-15)
 ├── paper/                       # Formal NeurIPS/ICLR LaTeX manuscript & vector figures
 │   ├── figures/                 # Camera-ready vector figures (PDF & PNG)
 │   ├── main.tex                 # Academic preprint manuscript
 │   └── references.bib           # Complete bibliography
-├── tests/                       # Automated pytest suite (43 passing unit & integration tests)
+├── tests/                       # Automated pytest suite (47 passing unit & integration tests)
 ├── dashboard.html               # Interactive Generative UI dashboard (9 interactive modules)
 ├── pyproject.toml               # Modern PEP 517/621 build configuration
 └── README.md                    # Project documentation

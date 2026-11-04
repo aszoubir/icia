@@ -1,0 +1,13 @@
+{
+  "greedy_success": false,
+  "greedy_stuck": true,
+  "greedy_trap_pos": [
+    4.0,
+    5.0
+  ],
+  "mcts_success": true,
+  "mcts_path_length": 20,
+  "mcts_nodes_expanded": 205,
+  "mcts_barrier_prunes": 212,
+  "mcts_latency_ms": 278.5284999990836
+}
