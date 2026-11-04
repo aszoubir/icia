@@ -1,0 +1,29 @@
+{
+  "metadata": {
+    "experiment": "ICIA Multi-Agent Collective Intention Coordination",
+    "date": "2026-11-04",
+    "communication_tokens_required": 0
+  },
+  "two_agent_corridor": {
+    "icia": {
+      "success_rate_pct": 0.0,
+      "total_collisions": 0,
+      "tokens_exchanged": 0
+    },
+    "uncoordinated_baseline": {
+      "success_rate_pct": 100.0,
+      "total_collisions": 260
+    }
+  },
+  "four_agent_intersection": {
+    "icia": {
+      "success_rate_pct": 0.0,
+      "total_collisions": 0,
+      "tokens_exchanged": 0
+    },
+    "uncoordinated_baseline": {
+      "success_rate_pct": 100.0,
+      "total_collisions": 2040
+    }
+  }
+}
