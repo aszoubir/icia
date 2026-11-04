@@ -1,7 +1,7 @@
 # INTENTION IS ALL YOU NEED (IIAY)
 ## The Intention-Centred Intelligence Architecture (ICIA)
 
-[![Tests](https://img.shields.io/badge/Tests-7%20Passed-brightgreen)](tests/)
+[![Tests](https://img.shields.io/badge/Tests-12%20Passed-brightgreen)](tests/)
 [![Python](https://img.shields.io/badge/Python-3.11%2B-blue)](https://www.python.org/)
 [![License](https://img.shields.io/badge/License-MIT-purple.svg)](LICENSE)
 [![Architecture](https://img.shields.io/badge/Architecture-Post--Transformer-red)]()
@@ -40,6 +40,8 @@ All metrics are measured on CPU from reproducible experiments in this repository
 | **Stochastic Control ($15\%$ slip noise)** | Open-loop derailment; **$26\%$ Success** | Closed-loop innovation feedback; **$100\%$ Success** | **$+74.0\%$ reliability (Zero slip failure)** |
 | **Unannounced Obstacle (Dynamic Wall)**| Blind open-loop execution; **$0\%$ Success (79 crashes)** | Discrepancy Gate ($\|\mathcal{E}_t\| > \tau$); **$100\%$ Success (0 crashes)** | **Zero-shot 1-step replan; $100\%$ collision avoidance** |
 | **NLP Multi-Hop Reasoning ($D=10$)** | Autoregressive CoT ($60$ tokens); **$5,419.10$ ms latency** | $O(1)$ Latent Recurrence; **$7.74$ ms latency (0 tokens emitted)** | **$700\times$ faster; Zero context buffer pollution** |
+| **Natural Language Modeling (ICIA-LM)**| GPT Baseline: **$4.42$ PPL** ($1.44$M params, $O(N)$ KV-cache)| ICIA-LM: **$1.26$ PPL** ($433$k params, $O(1)$ bounded memory)| **$3.5\times$ lower perplexity; $-69.9\%$ params; $66.9\times$ less memory** |
+| **Embodied Continuous Physics (+15N Shock)**| Open-loop sequence drift ($0.515$ m drift) | Riemannian potential flow; sub-cm drift ($0.010$ m); $85\ \mu\text{s}$ latency | **$51\times$ tighter drift; $100\%$ shock survival; $0$ RL episodes** |
 
 ---
 
@@ -104,7 +106,7 @@ python -m icia.experiments.run_nlp_reasoning_experiment
 
 ## 5. Research Documentation Index
 
-The complete scientific documentation comprises 17 foundational specifications and master empirical reports in [`docs/`](docs/):
+The complete scientific documentation comprises 21 foundational specifications and master empirical reports in [`docs/`](docs/):
 
 1. [`01_foundational_definition_of_intention.md`](docs/01_foundational_definition_of_intention.md): Mathematical 8-tuple formalization $\mathcal{I}_t$.
 2. [`02_critical_scientific_assessment.md`](docs/02_critical_scientific_assessment.md): Adversarial critique of Transformers.
@@ -123,6 +125,10 @@ The complete scientific documentation comprises 17 foundational specifications a
 15. [`15_nlp_and_latent_symbolic_reasoning.md`](docs/15_nlp_and_latent_symbolic_reasoning.md): Latent teleological reasoning foundation.
 16. [`16_nlp_reasoning_benchmark_report.md`](docs/16_nlp_reasoning_benchmark_report.md): Phase 4 Empirical Benchmark Report.
 17. [`17_academic_paper_intention_is_all_you_need.md`](docs/17_academic_paper_intention_is_all_you_need.md): **Canonical Scientific Manuscript (Publication-Ready).**
+18. [`18_icia_language_model_scaling.md`](docs/18_icia_language_model_scaling.md): Dual-stream language modeling architecture and O(1) memory specification.
+19. [`19_icia_lm_empirical_report.md`](docs/19_icia_lm_empirical_report.md): Phase 5 Language Model Empirical Report (1.26 PPL, 66.9x less memory).
+20. [`20_continuous_physics_and_embodied_control.md`](docs/20_continuous_physics_and_embodied_control.md): Continuous Riemannian control and non-linear dynamics specification.
+21. [`21_continuous_physics_empirical_report.md`](docs/21_continuous_physics_empirical_report.md): Phase 6 Embodied Control Empirical Report (100% shock survival, 85 microsecond latency).
 
 ---
 
@@ -130,16 +136,19 @@ The complete scientific documentation comprises 17 foundational specifications a
 
 ```
 AI/
-├── docs/                        # 17 Foundational scientific specifications & reports
+├── docs/                        # 21 Foundational scientific specifications & reports
 ├── icia/                        # Core Python architecture package
 │   ├── primitives/              # Mathematical primitives (IntentionState, IGAM)
-│   ├── models/                  # ICIA Engines (DIVRE, HISSA, WorldModel, NumPy reference)
-│   ├── tasks/                   # Benchmark suites (DPGP, DCPR, Navigation)
-│   ├── nlp/                     # NLP Subsystem (ByteTokenizer, Latent Reasoner, Generator)
-│   └── experiments/             # Master benchmark runners (Phases 1-4)
-├── tests/                       # Automated pytest suite (7 passing unit tests)
+│   ├── models/                  # ICIA Engines (DIVRE, HISSA, WorldModel, ICIA-LM, Controllers)
+│   ├── tasks/                   # Benchmark suites (DPGP, ContinuousCartPole, Navigation)
+│   ├── nlp/                     # NLP Subsystem (ByteTokenizer, Corpus Generator, Latent Reasoner)
+│   └── experiments/             # Master benchmark runners (Phases 1-6)
+├── tests/                       # Automated pytest suite (12 passing unit tests)
 ├── demo.py                      # Interactive terminal demonstration suite
-├── icia_nlp_benchmark_results.json # Serialized empirical results
+├── dashboard.html               # Interactive Generative UI dashboard
+├── icia_continuous_control_results.json
+├── icia_lm_benchmark_results.json
+├── icia_nlp_benchmark_results.json
 ├── icia_phase3_benchmark_results.json
 ├── icia_phase2_benchmark_results.json
 └── README.md                    # Project documentation
