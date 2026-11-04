@@ -51,3 +51,13 @@ def test_hierarchical_endpoint_logic():
     assert "active_subgoal" in telemetry
     assert telemetry["active_subgoal"] is not None
     assert len(action) == 2
+
+
+def test_code_synthesis_endpoint_logic():
+    """Verify code synthesis endpoint execution logic."""
+    from icia.tasks.code_synthesis_task import get_binary_search_task
+    from icia.experiments.run_code_synthesis_experiment import run_icia_generator
+    task = get_binary_search_task()
+    res = run_icia_generator(task)
+    assert res["syntax_valid"] is True
+    assert res["exec_success"] is True

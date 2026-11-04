@@ -15,6 +15,15 @@ from icia.models.continuous_icia_controller import ContinuousICIAController
 from icia.primitives.collective_intention import AgentState, CollectiveIntentionField
 from icia.tasks.hierarchical_foraging import HierarchicalForagingEnv
 from icia.experiments.run_hierarchical_experiment import build_icia_controller
+from icia.tasks.code_synthesis_task import (
+    get_binary_search_task,
+    get_matrix_transpose_task,
+    get_parentheses_validator_task
+)
+from icia.experiments.run_code_synthesis_experiment import (
+    run_icia_generator,
+    run_autoregressive_baseline
+)
 
 # Workspace Paths
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -170,6 +179,24 @@ class ICIAHTTPRequestHandler(BaseHTTPRequestHandler):
                 "facts": hierarchical_facts,
                 "subgoals": subgoals_summary,
                 "done": bool(done)
+            })
+
+        elif self.path == "/api/code_synthesis":
+            task_type = req_data.get("task", "binary_search")
+            if task_type == "binary_search":
+                task_data = get_binary_search_task()
+            elif task_type == "matrix_transpose":
+                task_data = get_matrix_transpose_task()
+            else:
+                task_data = get_parentheses_validator_task()
+
+            icia_res = run_icia_generator(task_data)
+            ar_res = run_autoregressive_baseline(task_data)
+
+            self._send_json({
+                "task": task_type,
+                "icia": icia_res,
+                "autoregressive": ar_res
             })
 
         elif self.path == "/api/deliberate":

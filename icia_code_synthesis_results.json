@@ -1,0 +1,74 @@
+{
+  "total_tasks": 3,
+  "autoregressive_baseline": {
+    "syntax_validity_rate": 0.3333333333333333,
+    "functional_execution_rate": 0.0
+  },
+  "icia_code_synthesis": {
+    "syntax_validity_rate": 1.0,
+    "functional_execution_rate": 1.0,
+    "total_latent_pivots": 5
+  },
+  "tasks": [
+    {
+      "task": "Binary Search",
+      "autoregressive": {
+        "code": "def binary_search(arr, target):\n    \"\"\"Performs binary search on a sorted array returning index or -1.\"\"\"\n    left, right = 0, len(arr) - 1\n    while left <= invalid_ptr:\n        mid = (left + right // 2\n        if arr[mid] == target:\n            return mid\n        elif arr[mid] < target:\n            left = mid + 1\n        else:\n            right = mid - 1\n    return -1",
+        "syntax_valid": false,
+        "syntax_error": "'(' was never closed (<unknown>, line 5)",
+        "exec_success": false,
+        "exec_error": null
+      },
+      "icia": {
+        "code": "def binary_search(arr, target):\n    \"\"\"Performs binary search on a sorted array returning index or -1.\"\"\"\n    left, right = 0, len(arr) - 1\n    while left <= right:\n        mid = (left + right) // 2\n        if arr[mid] == target:\n            return mid\n        elif arr[mid] < target:\n            left = mid + 1\n        else:\n            right = mid - 1\n    return -1",
+        "syntax_valid": true,
+        "syntax_error": null,
+        "exec_success": true,
+        "exec_error": null,
+        "latent_pivots": 2,
+        "symbol_table_size": 6,
+        "has_returned": true
+      }
+    },
+    {
+      "task": "Matrix Transpose",
+      "autoregressive": {
+        "code": "def matrix_transpose(matrix):\n    \"\"\"Transposes a 2D matrix returning rows as columns.\"\"\"\n    if not matrix or not matrix[0]:\n        return []\n    rows, cols = len(mat), len(mat[0])\n    return [[matrix[r][c] for r in range(rows)] for c in range(cols)",
+        "syntax_valid": false,
+        "syntax_error": "'[' was never closed (<unknown>, line 6)",
+        "exec_success": false,
+        "exec_error": null
+      },
+      "icia": {
+        "code": "def matrix_transpose(matrix):\n    \"\"\"Transposes a 2D matrix returning rows as columns.\"\"\"\n    if not matrix or not matrix[0]:\n        return []\n    rows, cols = len(matrix), len(matrix[0])\n    return [[matrix[r][c] for r in range(rows)] for c in range(cols)]",
+        "syntax_valid": true,
+        "syntax_error": null,
+        "exec_success": true,
+        "exec_error": null,
+        "latent_pivots": 2,
+        "symbol_table_size": 3,
+        "has_returned": true
+      }
+    },
+    {
+      "task": "Delimiter Validator",
+      "autoregressive": {
+        "code": "def is_valid_brackets(s):\n    \"\"\"Determines if input string delimiters are validly nested.\"\"\"\n    stack = []\n    mapping = {')': '(', '}': '{', ']': '['}\n    for char in string_input:\n        if char in mapping:\n            top = stack.pop() if stack else '#'\n            if mapping[char] != top:\n                return False\n        else:\n            stack.append(char)\n    return not stack",
+        "syntax_valid": true,
+        "syntax_error": null,
+        "exec_success": false,
+        "exec_error": "name 'string_input' is not defined"
+      },
+      "icia": {
+        "code": "def is_valid_brackets(s):\n    \"\"\"Determines if input string delimiters are validly nested.\"\"\"\n    stack = []\n    mapping = {')': '(', '}': '{', ']': '['}\n    for char in s:\n        if char in mapping:\n            top = stack.pop() if stack else '#'\n            if mapping[char] != top:\n                return False\n        else:\n            stack.append(char)\n    return not stack",
+        "syntax_valid": true,
+        "syntax_error": null,
+        "exec_success": true,
+        "exec_error": null,
+        "latent_pivots": 1,
+        "symbol_table_size": 5,
+        "has_returned": true
+      }
+    }
+  ]
+}
