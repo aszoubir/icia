@@ -1,0 +1,140 @@
+{
+  "parameters": {
+    "Standard Transformer (SAT)": 214528,
+    "Intention-Conditioned Transformer (ICT)": 252224,
+    "ICIA DIVRE-v1 (Phase 1 Baseline)": 62144,
+    "ICIA DIVRE-v2 (Integrated with AIAA & IGAM)": 92609
+  },
+  "dpgp_results": {
+    "Standard Transformer (SAT)": {
+      "8": {
+        "accuracy": 100.0,
+        "latency_ms_per_sample": 0.2794780000112951,
+        "attention_entropy": 0.07329860329627991
+      },
+      "32": {
+        "accuracy": 100.0,
+        "latency_ms_per_sample": 0.6677849998231977,
+        "attention_entropy": 0.18112483620643616
+      },
+      "128": {
+        "accuracy": 74.00000095367432,
+        "latency_ms_per_sample": 4.3065740005113184,
+        "attention_entropy": 2.880413293838501
+      },
+      "512": {
+        "accuracy": 2.9999999329447746,
+        "latency_ms_per_sample": 49.9156460002996,
+        "attention_entropy": 5.163066387176514
+      },
+      "1024": {
+        "accuracy": 25.999999046325684,
+        "latency_ms_per_sample": 581.9870319997426,
+        "attention_entropy": 5.116054058074951
+      }
+    },
+    "Intention-Conditioned Transformer (ICT)": {
+      "8": {
+        "accuracy": 100.0,
+        "latency_ms_per_sample": 0.7806069997604936,
+        "attention_entropy": 0.0
+      },
+      "32": {
+        "accuracy": 100.0,
+        "latency_ms_per_sample": 1.038511999649927,
+        "attention_entropy": 0.0
+      },
+      "128": {
+        "accuracy": 92.00000166893005,
+        "latency_ms_per_sample": 4.82771800016053,
+        "attention_entropy": 0.0
+      },
+      "512": {
+        "accuracy": 40.99999964237213,
+        "latency_ms_per_sample": 50.177192999981344,
+        "attention_entropy": 0.0
+      },
+      "1024": {
+        "accuracy": 37.99999952316284,
+        "latency_ms_per_sample": 365.508061000146,
+        "attention_entropy": 0.0
+      }
+    },
+    "ICIA DIVRE-v1 (Phase 1 Baseline)": {
+      "8": {
+        "accuracy": 100.0,
+        "latency_ms_per_sample": 1.107719000428915,
+        "attention_entropy": 0.0
+      },
+      "32": {
+        "accuracy": 100.0,
+        "latency_ms_per_sample": 0.9230349992867559,
+        "attention_entropy": 0.0
+      },
+      "128": {
+        "accuracy": 72.00000286102295,
+        "latency_ms_per_sample": 3.4632760006934404,
+        "attention_entropy": 0.0
+      },
+      "512": {
+        "accuracy": 36.000001430511475,
+        "latency_ms_per_sample": 12.774247999768704,
+        "attention_entropy": 0.0
+      },
+      "1024": {
+        "accuracy": 28.999999165534973,
+        "latency_ms_per_sample": 28.038970000343397,
+        "attention_entropy": 0.0
+      }
+    },
+    "ICIA DIVRE-v2 (Integrated with AIAA & IGAM)": {
+      "8": {
+        "accuracy": 100.0,
+        "latency_ms_per_sample": 0.8299310004804283,
+        "attention_entropy": 0.0
+      },
+      "32": {
+        "accuracy": 100.0,
+        "latency_ms_per_sample": 1.5753030008636415,
+        "attention_entropy": 0.0
+      },
+      "128": {
+        "accuracy": 80.0000011920929,
+        "latency_ms_per_sample": 5.891451000934467,
+        "attention_entropy": 0.0
+      },
+      "512": {
+        "accuracy": 43.99999976158142,
+        "latency_ms_per_sample": 24.388026000233367,
+        "attention_entropy": 0.0
+      },
+      "1024": {
+        "accuracy": 41.999998688697815,
+        "latency_ms_per_sample": 52.5379999994766,
+        "attention_entropy": 0.0
+      }
+    }
+  },
+  "dcpr_results": {
+    "Standard Transformer (SAT)": {
+      "pre_flip_accuracy": 62.00000047683716,
+      "immediate_pivot_accuracy": 0.0,
+      "post_flip_recovery_accuracy": 2.090909145772457
+    },
+    "Intention-Conditioned Transformer (ICT)": {
+      "pre_flip_accuracy": 77.99999713897705,
+      "immediate_pivot_accuracy": 0.0,
+      "post_flip_recovery_accuracy": 2.2727273404598236
+    },
+    "ICIA DIVRE-v1 (Phase 1 Baseline)": {
+      "pre_flip_accuracy": 10.583333671092987,
+      "immediate_pivot_accuracy": 1.9999999552965164,
+      "post_flip_recovery_accuracy": 2.7272727340459824
+    },
+    "ICIA DIVRE-v2 (Integrated with AIAA & IGAM)": {
+      "pre_flip_accuracy": 90.9166693687439,
+      "immediate_pivot_accuracy": 0.0,
+      "post_flip_recovery_accuracy": 0.0
+    }
+  }
+}

@@ -1,0 +1,119 @@
+{
+  "metadata": {
+    "experiment": "ICIA-NLP Symbolic Multi-Step Reasoning",
+    "date": "2026-11-04",
+    "device": "CPU",
+    "tokenizer_vocab_size": 262,
+    "icia_parameters": 414600,
+    "transformer_parameters": 453159,
+    "parameter_ratio_icia_to_transformer": 0.9149106604966468
+  },
+  "distractor_scaling_benchmark": {
+    "0": {
+      "avg_prompt_length": 75.16666412353516,
+      "icia": {
+        "accuracy_pct": 6.666667014360428,
+        "mean_abs_error": 10.554977416992188,
+        "scratchpad_tokens": 0,
+        "final_verification_confidence": 0.9968611001968384,
+        "latency_ms_per_sample": 2.09864666685462
+      },
+      "transformer_cot": {
+        "accuracy_pct": 8.33333358168602,
+        "mean_abs_error": 9.047269821166992,
+        "scratchpad_tokens": 60,
+        "latency_ms_per_sample": 979.2198616662063
+      }
+    },
+    "2": {
+      "avg_prompt_length": 114.86666870117188,
+      "icia": {
+        "accuracy_pct": 3.333333507180214,
+        "mean_abs_error": 8.715459823608398,
+        "scratchpad_tokens": 0,
+        "final_verification_confidence": 0.9968481063842773,
+        "latency_ms_per_sample": 3.0368299999584756
+      },
+      "transformer_cot": {
+        "accuracy_pct": 6.666667014360428,
+        "mean_abs_error": 8.361798286437988,
+        "scratchpad_tokens": 60,
+        "latency_ms_per_sample": 1594.1100316665445
+      }
+    },
+    "5": {
+      "avg_prompt_length": 175.35000610351562,
+      "icia": {
+        "accuracy_pct": 1.666666753590107,
+        "mean_abs_error": 9.945226669311523,
+        "scratchpad_tokens": 0,
+        "final_verification_confidence": 0.9968532919883728,
+        "latency_ms_per_sample": 4.667390000152712
+      },
+      "transformer_cot": {
+        "accuracy_pct": 6.666667014360428,
+        "mean_abs_error": 9.42094612121582,
+        "scratchpad_tokens": 60,
+        "latency_ms_per_sample": 2667.3751466655326
+      }
+    },
+    "10": {
+      "avg_prompt_length": 278.1000061035156,
+      "icia": {
+        "accuracy_pct": 3.333333507180214,
+        "mean_abs_error": 9.867884635925293,
+        "scratchpad_tokens": 0,
+        "final_verification_confidence": 0.9968664050102234,
+        "latency_ms_per_sample": 7.739396666875109
+      },
+      "transformer_cot": {
+        "accuracy_pct": 11.666666716337204,
+        "mean_abs_error": 10.681380271911621,
+        "scratchpad_tokens": 60,
+        "latency_ms_per_sample": 5419.102986667228
+      }
+    }
+  },
+  "latent_deliberation_depth_benchmark": {
+    "1": {
+      "thinking_steps": 1,
+      "accuracy_pct": 1.666666753590107,
+      "mean_abs_error": 9.934231758117676,
+      "verification_confidence": 0.9968417286872864
+    },
+    "2": {
+      "thinking_steps": 2,
+      "accuracy_pct": 1.666666753590107,
+      "mean_abs_error": 9.934231758117676,
+      "verification_confidence": 0.9968417286872864
+    },
+    "3": {
+      "thinking_steps": 3,
+      "accuracy_pct": 1.666666753590107,
+      "mean_abs_error": 9.934231758117676,
+      "verification_confidence": 0.9968417286872864
+    },
+    "4": {
+      "thinking_steps": 4,
+      "accuracy_pct": 1.666666753590107,
+      "mean_abs_error": 9.934231758117676,
+      "verification_confidence": 0.9968417286872864
+    },
+    "5": {
+      "thinking_steps": 5,
+      "accuracy_pct": 1.666666753590107,
+      "mean_abs_error": 9.934231758117676,
+      "verification_confidence": 0.9968417286872864
+    },
+    "6": {
+      "thinking_steps": 6,
+      "accuracy_pct": 1.666666753590107,
+      "mean_abs_error": 9.934231758117676,
+      "verification_confidence": 0.9968417286872864
+    }
+  },
+  "loss_summary": {
+    "icia_final_loss": 16.126907348632812,
+    "transformer_final_loss": 15.133225440979004
+  }
+}

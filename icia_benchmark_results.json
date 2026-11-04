@@ -1,0 +1,92 @@
+{
+  "parameters": {
+    "Standard Transformer (SAT)": 148992,
+    "Intention-Conditioned Transformer (ICT)": 186688,
+    "ICIA Candidate C (DIVRE)": 62144
+  },
+  "dpgp_results": {
+    "Standard Transformer (SAT)": {
+      "8": {
+        "accuracy": 100.0,
+        "latency_ms_per_sample": 0.27207499952055514,
+        "attention_entropy": 0.23521029949188232
+      },
+      "32": {
+        "accuracy": 55.000001192092896,
+        "latency_ms_per_sample": 0.6750909995753318,
+        "attention_entropy": 2.256476879119873
+      },
+      "128": {
+        "accuracy": 11.999999731779099,
+        "latency_ms_per_sample": 4.188710000598803,
+        "attention_entropy": 4.2003302574157715
+      },
+      "512": {
+        "accuracy": 14.000000059604645,
+        "latency_ms_per_sample": 120.81877499935217,
+        "attention_entropy": 5.740191459655762
+      }
+    },
+    "Intention-Conditioned Transformer (ICT)": {
+      "8": {
+        "accuracy": 100.0,
+        "latency_ms_per_sample": 0.5823199998121709,
+        "attention_entropy": 0.0
+      },
+      "32": {
+        "accuracy": 43.00000071525574,
+        "latency_ms_per_sample": 0.89661700068973,
+        "attention_entropy": 0.0
+      },
+      "128": {
+        "accuracy": 25.0,
+        "latency_ms_per_sample": 5.627509999321774,
+        "attention_entropy": 0.0
+      },
+      "512": {
+        "accuracy": 0.9999999776482582,
+        "latency_ms_per_sample": 44.45531200035475,
+        "attention_entropy": 0.0
+      }
+    },
+    "ICIA Candidate C (DIVRE)": {
+      "8": {
+        "accuracy": 100.0,
+        "latency_ms_per_sample": 0.4317369998898357,
+        "attention_entropy": 0.0
+      },
+      "32": {
+        "accuracy": 100.0,
+        "latency_ms_per_sample": 0.8056519995443523,
+        "attention_entropy": 0.0
+      },
+      "128": {
+        "accuracy": 30.000001192092896,
+        "latency_ms_per_sample": 4.386664000339806,
+        "attention_entropy": 0.0
+      },
+      "512": {
+        "accuracy": 7.000000029802322,
+        "latency_ms_per_sample": 13.133176999399439,
+        "attention_entropy": 0.0
+      }
+    }
+  },
+  "dcpr_results": {
+    "Standard Transformer (SAT)": {
+      "pre_flip_accuracy": 51.99999809265137,
+      "immediate_pivot_accuracy": 0.0,
+      "post_flip_recovery_accuracy": 4.777777940034866
+    },
+    "Intention-Conditioned Transformer (ICT)": {
+      "pre_flip_accuracy": 50.40000081062317,
+      "immediate_pivot_accuracy": 2.9999999329447746,
+      "post_flip_recovery_accuracy": 2.666666731238365
+    },
+    "ICIA Candidate C (DIVRE)": {
+      "pre_flip_accuracy": 43.50000023841858,
+      "immediate_pivot_accuracy": 0.0,
+      "post_flip_recovery_accuracy": 0.2222222276031971
+    }
+  }
+}
