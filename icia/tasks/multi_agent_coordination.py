@@ -18,10 +18,12 @@ class BottleneckCorridorEnv:
         self.corridor_half_width = 0.55 # Narrow bottleneck
         self.obstacles: List[Tuple[np.ndarray, float]] = []
 
-        # Create upper and lower obstacle walls defining the corridor
-        for x_val in np.linspace(-2.0, 2.0, 9):
-            self.obstacles.append((np.array([x_val, 1.2]), 0.5))
-            self.obstacles.append((np.array([x_val, -1.2]), 0.5))
+        # Create obstacle walls defining corridor or 4-way crossway intersection
+        for x_val in np.linspace(-2.4, 2.4, 11):
+            if self.num_agents == 4 and abs(x_val) < 0.8:
+                continue # Leave crossway intersection open in vertical direction
+            self.obstacles.append((np.array([x_val, 1.4]), 0.45))
+            self.obstacles.append((np.array([x_val, -1.4]), 0.45))
 
     def create_field(self) -> CollectiveIntentionField:
         agents = []
