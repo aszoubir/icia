@@ -89,6 +89,19 @@ class NLIntentionParser:
                 ]
             )
 
+        elif "top_k_words" in prompt_lower or ("k most frequent" in prompt_lower or "top k" in prompt_lower) and "words" in prompt_lower:
+            return NLCodeContract(
+                function_name="top_k_words",
+                args=["words", "k"],
+                docstring="Returns top k most frequent words in list without collections or heapq.",
+                input_guards=["if not words or k <= 0: return []"],
+                prohibitions=["import collections", "from collections", "import heapq", "from heapq", "Counter"],
+                test_cases=[
+                    {"input_args": (["apple", "banana", "apple", "cherry", "banana", "apple"], 2), "expected": ["apple", "banana"]},
+                    {"input_args": (["dog", "cat", "dog"], 1), "expected": ["dog"]}
+                ]
+            )
+
         elif "frequent words" in prompt_lower or "stop words" in prompt_lower:
             # Task: Top frequent words excluding stop words
             return NLCodeContract(
@@ -102,6 +115,64 @@ class NLIntentionParser:
                         "input_args": ("The apple is good, the apple is red. An apple a day.", 2),
                         "expected": ["apple", "day"]
                     }
+                ]
+            )
+
+        elif "fibonacci" in prompt_lower:
+            return NLCodeContract(
+                function_name="fibonacci",
+                args=["n"],
+                docstring="Computes the n-th Fibonacci number iteratively without recursion.",
+                input_guards=["if n <= 0: return 0", "if n == 1: return 1"],
+                prohibitions=["fibonacci(", "import", "from"],
+                test_cases=[
+                    {"input": 0, "expected": 0},
+                    {"input": 1, "expected": 1},
+                    {"input": 7, "expected": 13},
+                    {"input": 10, "expected": 55}
+                ]
+            )
+
+        elif "reverse" in prompt_lower and ("inplace" in prompt_lower or "in-place" in prompt_lower or "arr" in prompt_lower):
+            return NLCodeContract(
+                function_name="reverse_inplace",
+                args=["arr"],
+                docstring="Reverses an array in-place without slicing or reversed().",
+                input_guards=["if not arr or len(arr) <= 1: return arr"],
+                prohibitions=["::-1", "reversed(", "import", "arr.copy()"],
+                test_cases=[
+                    {"input": [1, 2, 3, 4], "expected": [4, 3, 2, 1]},
+                    {"input": [], "expected": []},
+                    {"input": ["a", "b"], "expected": ["b", "a"]}
+                ]
+            )
+
+        elif "two_sum" in prompt_lower or ("two" in prompt_lower and "sum" in prompt_lower):
+            return NLCodeContract(
+                function_name="two_sum",
+                args=["nums", "target"],
+                docstring="Finds indices of two numbers that sum to target in O(N) time without nested loops.",
+                input_guards=["if not nums: return []"],
+                prohibitions=["import", "from"],
+                test_cases=[
+                    {"input_args": ([2, 7, 11, 15], 9), "expected": [0, 1]},
+                    {"input_args": ([3, 2, 4], 6), "expected": [1, 2]},
+                    {"input_args": ([3, 3], 6), "expected": [0, 1]}
+                ]
+            )
+
+        elif "bracket" in prompt_lower or "match" in prompt_lower and "code" in prompt_lower:
+            return NLCodeContract(
+                function_name="check_brackets",
+                args=["code"],
+                docstring="Validates balanced delimiters using an invariant stack without regex.",
+                input_guards=["if not code: return True"],
+                prohibitions=["import re", "re.", "regex"],
+                test_cases=[
+                    {"input": "([]){}", "expected": True},
+                    {"input": "([)]", "expected": False},
+                    {"input": "", "expected": True},
+                    {"input": "(", "expected": False}
                 ]
             )
 
@@ -166,6 +237,49 @@ class NLProgrammerEngine:
             lines.append("        counts[w] = counts.get(w, 0) + 1")
             lines.append("    sorted_words = sorted(counts.keys(), key=lambda w: (-counts[w], w))")
             lines.append("    return sorted_words[:k]")
+
+        elif contract.function_name == "top_k_words":
+            lines.append("    counts = {}")
+            lines.append("    for w in words:")
+            lines.append("        counts[w] = counts.get(w, 0) + 1")
+            lines.append("    sorted_words = sorted(counts.keys(), key=lambda w: (-counts[w], words.index(w)))")
+            lines.append("    return sorted_words[:k]")
+
+        elif contract.function_name == "fibonacci":
+            lines.append("    a, b = 0, 1")
+            lines.append("    for _ in range(n):")
+            lines.append("        a, b = b, a + b")
+            lines.append("    return a")
+
+        elif contract.function_name == "reverse_inplace":
+            lines.append("    left = 0")
+            lines.append("    right = len(arr) - 1")
+            lines.append("    while left < right:")
+            lines.append("        arr[left], arr[right] = arr[right], arr[left]")
+            lines.append("        left += 1")
+            lines.append("        right -= 1")
+            lines.append("    return arr")
+
+        elif contract.function_name == "two_sum":
+            lines.append("    seen = {}")
+            lines.append("    for i, num in enumerate(nums):")
+            lines.append("        complement = target - num")
+            lines.append("        if complement in seen:")
+            lines.append("            return [seen[complement], i]")
+            lines.append("        seen[num] = i")
+            lines.append("    return []")
+
+        elif contract.function_name == "check_brackets":
+            lines.append("    mapping = {')': '(', ']': '[', '}': '{'}")
+            lines.append("    stack = []")
+            lines.append("    for ch in code:")
+            lines.append("        if ch in '([{':")
+            lines.append("            stack.append(ch)")
+            lines.append("        elif ch in mapping:")
+            lines.append("            if not stack or stack[-1] != mapping[ch]:")
+            lines.append("                return False")
+            lines.append("            stack.pop()")
+            lines.append("    return len(stack) == 0")
 
         else:
             lines.append("    return data")
