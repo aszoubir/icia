@@ -1,0 +1,124 @@
+{
+  "total_prompts": 4,
+  "autoregressive_baseline": {
+    "functional_pass_rate": 0.25,
+    "prohibitions_broken": 2,
+    "edge_case_failures": 1
+  },
+  "icia_nl_programmer": {
+    "functional_pass_rate": 1.0,
+    "prohibitions_broken": 0,
+    "edge_case_failures": 0
+  },
+  "records": [
+    {
+      "prompt": "Given a list of integers, filter out odd numbers, square the remaining even numbers, and return them sorted in descending order without using external libraries or numpy.",
+      "autoregressive": {
+        "passed": false,
+        "prohibition_violated": true,
+        "code": "def process_even_squares(numbers):\n    import numpy as np  # PROHIBITED IMPORT! Negation blindness\n    arr = np.array(numbers)\n    evens = arr[arr % 2 == 0]\n    return sorted(list(evens ** 2), reverse=True)"
+      },
+      "icia": {
+        "passed": true,
+        "prohibition_violated": false,
+        "code": "def process_even_squares(numbers):\n    \"\"\"Filters even numbers, squares them, and returns them sorted in descending order.\"\"\"\n    if not numbers: return []\n    evens = [x for x in numbers if x % 2 == 0]\n    squares = [x ** 2 for x in evens]\n    return sorted(squares, reverse=True)",
+        "contract": {
+          "function_name": "process_even_squares",
+          "args": [
+            "numbers"
+          ],
+          "docstring": "Filters even numbers, squares them, and returns them sorted in descending order.",
+          "guards": [
+            "if not numbers: return []"
+          ],
+          "prohibitions": [
+            "import numpy",
+            "import math"
+          ]
+        }
+      }
+    },
+    {
+      "prompt": "Write a function is_palindrome that checks if a string reads the same forwards and backwards, ignoring casing and non-alphanumeric characters, and handling empty strings safely.",
+      "autoregressive": {
+        "passed": false,
+        "prohibition_violated": false,
+        "code": "def is_palindrome(text):\n    # Missed non-alphanumeric strip! Fails on punctuation \"A man, a plan...\"\n    return text.lower() == text.lower()[::-1]"
+      },
+      "icia": {
+        "passed": true,
+        "prohibition_violated": false,
+        "code": "def is_palindrome(text):\n    \"\"\"Checks if a string is a palindrome, ignoring casing and non-alphanumeric characters.\"\"\"\n    if not text: return True\n    cleaned = ''.join(c.lower() for c in text if c.isalnum())\n    return cleaned == cleaned[::-1]",
+        "contract": {
+          "function_name": "is_palindrome",
+          "args": [
+            "text"
+          ],
+          "docstring": "Checks if a string is a palindrome, ignoring casing and non-alphanumeric characters.",
+          "guards": [
+            "if not text: return True"
+          ],
+          "prohibitions": [
+            "import re"
+          ]
+        }
+      }
+    },
+    {
+      "prompt": "Given a list of numbers and an integer k, compute the moving average of window size k over the list. If k is greater than the list length, return an empty list. Do not use external libraries.",
+      "autoregressive": {
+        "passed": true,
+        "prohibition_violated": false,
+        "code": "def moving_average(numbers, k):\n    # Missing guard: if k > len(numbers) or not numbers\n    result = []\n    for i in range(len(numbers) - k + 1):\n        result.append(sum(numbers[i:i+k]) / k)\n    return result"
+      },
+      "icia": {
+        "passed": true,
+        "prohibition_violated": false,
+        "code": "def moving_average(numbers, k):\n    \"\"\"Computes moving average over numbers stream with window size k.\"\"\"\n    if not numbers or k <= 0 or k > len(numbers): return []\n    result = []\n    for i in range(len(numbers) - k + 1):\n        window_avg = round(sum(numbers[i:i + k]) / k, 4)\n        result.append(window_avg)\n    return result",
+        "contract": {
+          "function_name": "moving_average",
+          "args": [
+            "numbers",
+            "k"
+          ],
+          "docstring": "Computes moving average over numbers stream with window size k.",
+          "guards": [
+            "if not numbers or k <= 0 or k > len(numbers): return []"
+          ],
+          "prohibitions": [
+            "import numpy",
+            "import pandas"
+          ]
+        }
+      }
+    },
+    {
+      "prompt": "Given a text string, find the top 3 most frequent words, ignoring case and punctuation. Do not include stop words like 'the', 'a', 'is'. Return words in lowercase without using collections or external libraries.",
+      "autoregressive": {
+        "passed": false,
+        "prohibition_violated": true,
+        "code": "def top_frequent_words(text, k):\n    from collections import Counter  # PROHIBITED IMPORT!\n    words = text.lower().split()\n    counts = Counter(words)\n    return [w for w, _ in counts.most_common(k)]"
+      },
+      "icia": {
+        "passed": true,
+        "prohibition_violated": false,
+        "code": "def top_frequent_words(text, k):\n    \"\"\"Finds top k most frequent words ignoring casing, punctuation, and stop words.\"\"\"\n    if not text or k <= 0: return []\n    stop_words = {'the', 'a', 'an', 'is', 'in', 'it', 'to', 'of', 'and'}\n    cleaned_words = []\n    for raw_word in text.split():\n        w = ''.join(c.lower() for c in raw_word if c.isalnum())\n        if w and w not in stop_words:\n            cleaned_words.append(w)\n    counts = {}\n    for w in cleaned_words:\n        counts[w] = counts.get(w, 0) + 1\n    sorted_words = sorted(counts.keys(), key=lambda w: (-counts[w], w))\n    return sorted_words[:k]",
+        "contract": {
+          "function_name": "top_frequent_words",
+          "args": [
+            "text",
+            "k"
+          ],
+          "docstring": "Finds top k most frequent words ignoring casing, punctuation, and stop words.",
+          "guards": [
+            "if not text or k <= 0: return []"
+          ],
+          "prohibitions": [
+            "import collections",
+            "import nltk"
+          ]
+        }
+      }
+    }
+  ]
+}

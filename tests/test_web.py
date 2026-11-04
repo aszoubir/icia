@@ -61,3 +61,13 @@ def test_code_synthesis_endpoint_logic():
     res = run_icia_generator(task)
     assert res["syntax_valid"] is True
     assert res["exec_success"] is True
+
+
+def test_nl_program_endpoint_logic():
+    """Verify NL programmer endpoint execution logic."""
+    from icia.code.nl_programmer import NLProgrammerEngine
+    engine = NLProgrammerEngine()
+    res = engine.compile_and_synthesize("Filter even numbers and square them, sorting in descending order.")
+    assert res["syntax_valid"] is True
+    assert res["tests_passed"] is True
+    assert "process_even_squares" in res["code"]

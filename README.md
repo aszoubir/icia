@@ -1,7 +1,7 @@
 # INTENTION IS ALL YOU NEED (IIAY)
 ## The Intention-Centred Intelligence Architecture (ICIA)
 
-[![Tests](https://img.shields.io/badge/Tests-23%20Passed-brightgreen)](tests/)
+[![Tests](https://img.shields.io/badge/Tests-35%20Passed-brightgreen)](tests/)
 [![Python](https://img.shields.io/badge/Python-3.11%2B-blue)](https://www.python.org/)
 [![C99](https://img.shields.io/badge/Embedded-MISRA--C99-orange)](include/icia_core.h)
 [![License](https://img.shields.io/badge/License-MIT-purple.svg)](LICENSE)
@@ -45,6 +45,8 @@ All metrics are measured on CPU from reproducible experiments in this repository
 | **Continuous Physics (+15N Shock)**| Open-loop sequence drift ($0.515$ m drift) | Riemannian potential flow; sub-cm drift ($0.010$ m); $85\ \mu\text{s}$ latency | **$51\times$ tighter drift; $100\%$ shock survival; $0$ RL episodes** |
 | **Multi-Agent Bottleneck Coordination**| Conversational chat ($2,040$ collisions in pileups)| Symplectic Collective Field ($0$ collisions, $100\%$ success)| **Zero communication tokens; $100\%$ deadlock-free passage** |
 | **Hierarchical Impasse Resolution**| Autoregressive inertia ($97$ stuck cycles, $0\%$ success)| Dynamic Sub-goal Re-routing ($0$ stuck cycles, $100\%$ success)| **$1$-step pivot; $0$ wasted tokens; $2.18\times$ faster** |
+| **AST Code Invariants (Synthesis)**| Token hallucination ($33.3\%$ syntax, $0.0\%$ pass rate)| Active Syntax Constraint Invariants ($100\%$ syntax, $100\%$ pass)| **$100\%$ valid ASTs; $5$ syntax/scoping bugs blocked** |
+| **Natural Language Programming**| Negation blindness ($25.0\%$ pass rate, $50\%$ violations)| Repulsive Barrier Potential ($100.0\%$ pass rate, $0\%$ violations)| **$4\times$ higher pass rate; $0\%$ broken prohibitions** |
 
 ---
 
@@ -103,13 +105,22 @@ python -m icia.experiments.run_phase3_experiment
 
 # Phase 4: NLP symbolic reasoning vs. Chain-of-Thought
 python -m icia.experiments.run_nlp_reasoning_experiment
+
+# Phase 8: Hierarchical Intention Decomposition
+python -m icia.experiments.run_hierarchical_experiment
+
+# Phase 9: Intention-Guided Code Synthesis & AST Invariants
+python -m icia.experiments.run_code_synthesis_experiment
+
+# Phase 10: Natural Language Programming & Repulsive Barrier Compilation
+python -m icia.experiments.run_nl_coding_experiment
 ```
 
 ---
 
 ## 5. Research Documentation Index
 
-The complete scientific documentation comprises 21 foundational specifications and master empirical reports in [`docs/`](docs/):
+The complete scientific documentation comprises 26 foundational specifications and master empirical reports in [`docs/`](docs/):
 
 1. [`01_foundational_definition_of_intention.md`](docs/01_foundational_definition_of_intention.md): Mathematical 8-tuple formalization $\mathcal{I}_t$.
 2. [`02_critical_scientific_assessment.md`](docs/02_critical_scientific_assessment.md): Adversarial critique of Transformers.
@@ -135,6 +146,8 @@ The complete scientific documentation comprises 21 foundational specifications a
 22. [`22_collective_intention_and_multiagent_coordination.md`](docs/22_collective_intention_and_multiagent_coordination.md): Collective Intention Algebra & Symplectic Vorticity.
 23. [`23_multiagent_coordination_report.md`](docs/23_multiagent_coordination_report.md): Phase 7 Multi-Agent Benchmark Report (0 collisions, 0 communication tokens).
 24. [`24_hierarchical_intention_report.md`](docs/24_hierarchical_intention_report.md): Phase 8 Hierarchical Decomposition Report (1-step pivot vs autoregressive inertia).
+25. [`25_code_generation_and_ast_invariants.md`](docs/25_code_generation_and_ast_invariants.md): Phase 9 Intention-Guided Code Synthesis & AST Invariants Report.
+26. [`26_natural_language_programming_report.md`](docs/26_natural_language_programming_report.md): Phase 10 Natural Language Programming & Repulsive Barrier Compilation Report.
 
 ---
 
@@ -144,24 +157,25 @@ The complete scientific documentation comprises 21 foundational specifications a
 AI/
 ├── .github/workflows/ci.yml     # Multi-OS Matrix CI/CD Pipeline
 ├── dist/                        # Standalone distribution wheel and source tarball
-├── docs/                        # 24 Foundational scientific specifications & reports
+├── docs/                        # 26 Foundational scientific specifications & reports
 ├── include/
 │   └── icia_core.h              # Zero-allocation ANSI C99 single-header embedded engine
 ├── icia/                        # Core Python architecture package
 │   ├── cli.py                   # Unified console executable (`icia` command)
 │   ├── primitives/              # Mathematical primitives (IntentionState, IGAM, CollectiveField)
 │   ├── models/                  # ICIA Engines (DIVRE, HISSA, WorldModel, ICIA-LM, Hierarchical)
+│   ├── code/                    # AST Invariant Engine & NL Intention Programmer
 │   ├── native/                  # Sub-microsecond binary C-types interface
-│   ├── tasks/                   # Benchmark suites (DPGP, CartPole, Navigation, Hierarchical)
+│   ├── tasks/                   # Benchmark suites (DPGP, CartPole, Navigation, Hierarchical, Code)
 │   ├── nlp/                     # NLP Subsystem (ByteTokenizer, Corpus Generator, Latent Reasoner)
 │   ├── web/                     # Live HTTP server & API endpoints
-│   └── experiments/             # Master benchmark runners (Phases 1-8)
+│   └── experiments/             # Master benchmark runners (Phases 1-10)
 ├── paper/                       # Formal NeurIPS/ICLR LaTeX manuscript & vector figures
 │   ├── figures/                 # Camera-ready vector figures (PDF & PNG)
 │   ├── main.tex                 # Academic preprint manuscript
 │   └── references.bib           # Complete bibliography
-├── tests/                       # Automated pytest suite (23 passing unit & integration tests)
-├── dashboard.html               # Interactive Generative UI dashboard (7 interactive modules)
+├── tests/                       # Automated pytest suite (35 passing unit & integration tests)
+├── dashboard.html               # Interactive Generative UI dashboard (9 interactive modules)
 ├── pyproject.toml               # Modern PEP 517/621 build configuration
 └── README.md                    # Project documentation
 ```

@@ -4,9 +4,17 @@ from icia.code.ast_engine import (
     SyntaxConstraintTracker,
     IntentionGuidedCodeGenerator
 )
+from icia.code.nl_programmer import (
+    NLCodeContract,
+    NLIntentionParser,
+    NLProgrammerEngine
+)
 
 __all__ = [
     "CodeIntentionSpec",
     "SyntaxConstraintTracker",
-    "IntentionGuidedCodeGenerator"
+    "IntentionGuidedCodeGenerator",
+    "NLCodeContract",
+    "NLIntentionParser",
+    "NLProgrammerEngine"
 ]

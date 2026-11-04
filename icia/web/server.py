@@ -24,6 +24,7 @@ from icia.experiments.run_code_synthesis_experiment import (
     run_icia_generator,
     run_autoregressive_baseline
 )
+from icia.code.nl_programmer import NLProgrammerEngine
 
 # Workspace Paths
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -32,6 +33,7 @@ DASHBOARD_PATH = os.path.join(PROJECT_ROOT, "dashboard.html")
 # Global Controller & State Instances
 physics_env = ContinuousCartPoleEnv()
 physics_controller = ContinuousICIAController()
+nl_engine = NLProgrammerEngine()
 
 hierarchical_env = HierarchicalForagingEnv(stochastic_jam=True)
 hierarchical_controller = build_icia_controller()
@@ -198,6 +200,11 @@ class ICIAHTTPRequestHandler(BaseHTTPRequestHandler):
                 "icia": icia_res,
                 "autoregressive": ar_res
             })
+
+        elif self.path == "/api/nl_program":
+            prompt = req_data.get("prompt", "Given a list of integers, filter odd numbers, square the remaining even numbers, sort descending.")
+            res = nl_engine.compile_and_synthesize(prompt)
+            self._send_json(res)
 
         elif self.path == "/api/deliberate":
             prompt = req_data.get("prompt", "Set alpha = 14. What is alpha?")
