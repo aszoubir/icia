@@ -5,6 +5,7 @@ Evaluates ICIA Repulsive Barrier Compilation vs. Autoregressive LLMs on HumanEva
 
 from __future__ import annotations
 import ast
+import copy
 import json
 import time
 from typing import Dict, Any, List
@@ -45,7 +46,7 @@ def evaluate_candidate_code(code: str, challenge: ConstrainedChallenge) -> Dict[
             if target_fn is not None:
                 all_ok = True
                 for tc in challenge.test_cases:
-                    args = tc["args"]
+                    args = copy.deepcopy(tc["args"])
                     expected = tc["expected"]
                     actual = target_fn(*args)
                     ok = (actual == expected)

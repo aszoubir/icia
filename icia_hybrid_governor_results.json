@@ -1,0 +1,78 @@
+{
+  "num_tasks": 5,
+  "foundation_raw_pass_rate": 0.0,
+  "governed_pass_rate": 100.0,
+  "total_interventions": 10,
+  "soft_slack_test_a": {
+    "feasible": true,
+    "total_slack": 23.0,
+    "preserved": true
+  },
+  "hard_invariance_test_b": {
+    "feasible": false,
+    "preserved": false
+  },
+  "tasks": [
+    {
+      "task_id": "MBPP-C01",
+      "raw_violations": [
+        "recursive_call"
+      ],
+      "interventions": [
+        "Blocked 1 negative barrier violations: ['recursive_call']",
+        "Pivoted in 1-step to ICIA invariant-bounded implementation."
+      ],
+      "tests_passed": true,
+      "latency_ms": 1.0022999485954642
+    },
+    {
+      "task_id": "MBPP-C02",
+      "raw_violations": [
+        "slice_reversal"
+      ],
+      "interventions": [
+        "Blocked 1 negative barrier violations: ['slice_reversal']",
+        "Pivoted in 1-step to ICIA invariant-bounded implementation."
+      ],
+      "tests_passed": true,
+      "latency_ms": 0.9991000406444073
+    },
+    {
+      "task_id": "MBPP-C03",
+      "raw_violations": [
+        "nested_loops"
+      ],
+      "interventions": [
+        "Blocked 1 negative barrier violations: ['nested_loops']",
+        "Pivoted in 1-step to ICIA invariant-bounded implementation."
+      ],
+      "tests_passed": true,
+      "latency_ms": 2.222699928097427
+    },
+    {
+      "task_id": "MBPP-C04",
+      "raw_violations": [
+        "Counter",
+        "from collections import ..."
+      ],
+      "interventions": [
+        "Blocked 2 negative barrier violations: ['Counter', 'from collections import ...']",
+        "Pivoted in 1-step to ICIA invariant-bounded implementation."
+      ],
+      "tests_passed": true,
+      "latency_ms": 1.9094999879598618
+    },
+    {
+      "task_id": "MBPP-C05",
+      "raw_violations": [
+        "import re"
+      ],
+      "interventions": [
+        "Blocked 1 negative barrier violations: ['import re']",
+        "Pivoted in 1-step to ICIA invariant-bounded implementation."
+      ],
+      "tests_passed": true,
+      "latency_ms": 1.4875999186187983
+    }
+  ]
+}

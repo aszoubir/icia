@@ -4,7 +4,7 @@
 ### Included Files & SHA-256 Checksums
 | File Path | SHA-256 Checksum | Size (Bytes) |
 | :--- | :--- | :--- |
-| `paper/main.tex` | `8951d342319f49e0e696a74b1fcbc2270849ac95866a4b9c1a5c16ff7dc8f6de` | 7,686 |
+| `paper/main.tex` | `21a512f5a9cc0d4e3fb5988af3653a07e8a7a6428a243c030bf253599b831ba4` | 7,856 |
 | `paper/references.bib` | `00d7115f4ed5f3a84afda12c44175bc32f742c126d285e0ac7644632930c775a` | 1,664 |
 | `paper/figures/fig1_attention_dispersion.pdf` | `1d1977d005c8972e5bf07f5608c822f592f4288d19e8f76e5b3fc847419450e5` | 27,997 |
 | `paper/figures/fig1_attention_dispersion.png` | `4593b830e3e28dd6dba7b2e3b7cde014ab6a85970ce3a9fb4da4432f4e6ecdcf` | 156,216 |

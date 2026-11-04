@@ -153,7 +153,7 @@ class NLIntentionParser:
                 args=["nums", "target"],
                 docstring="Finds indices of two numbers that sum to target in O(N) time without nested loops.",
                 input_guards=["if not nums: return []"],
-                prohibitions=["import", "from"],
+                prohibitions=["import", "from", "nested_loops", "for j in"],
                 test_cases=[
                     {"input_args": ([2, 7, 11, 15], 9), "expected": [0, 1]},
                     {"input_args": ([3, 2, 4], 6), "expected": [1, 2]},
@@ -167,7 +167,7 @@ class NLIntentionParser:
                 args=["code"],
                 docstring="Validates balanced delimiters using an invariant stack without regex.",
                 input_guards=["if not code: return True"],
-                prohibitions=["import re", "re.", "regex"],
+                prohibitions=["re", "import", "regex"],
                 test_cases=[
                     {"input": "([]){}", "expected": True},
                     {"input": "([)]", "expected": False},
