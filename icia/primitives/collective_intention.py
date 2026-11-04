@@ -73,11 +73,13 @@ class CollectiveIntentionField:
                 # If oncoming agent has higher priority and is entering/inside bottleneck
                 is_oncoming = (ai.pos[0] * aj.pos[0] < 0) or (np.dot(diff_g, aj.goal - aj.pos) < 0)
                 if is_oncoming and aj.priority > ai.priority:
-                    # Yield at the entrance if not yet past the center
-                    if (ai.goal[0] > 0 and ai.pos[0] < -1.2) or (ai.goal[0] < 0 and ai.pos[0] > 1.2):
-                        # Wait at entrance until aj clears bottleneck
-                        if abs(aj.pos[0]) < 2.2:
-                            return np.zeros_like(ai.pos)
+                    # Yield outside the bottleneck (x >= 2.4 or x <= -2.4)
+                    if (ai.goal[0] > 0 and ai.pos[0] < -2.2) or (ai.goal[0] < 0 and ai.pos[0] > 2.2):
+                        if abs(aj.pos[0]) < 2.4:
+                            # Step aside to lateral shoulder and halt
+                            lateral_target = 0.45 if ai.agent_id % 2 == 0 else -0.45
+                            dy = lateral_target - ai.pos[1]
+                            return np.array([0.0, np.clip(dy * 2.0, -0.8, 0.8)])
 
         # 2. Inter-Agent Collision Avoidance Barrier
         grad_avoidance = np.zeros_like(ai.pos)
