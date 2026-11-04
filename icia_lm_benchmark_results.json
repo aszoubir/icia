@@ -1,0 +1,80 @@
+{
+  "metadata": {
+    "experiment": "ICIA-LM Natural Language Pre-Training & Needle Retrieval",
+    "date": "2026-11-04",
+    "device": "CPU",
+    "icia_parameters": 433703,
+    "gpt_parameters": 1439590,
+    "parameter_ratio": 0.3012684167019776,
+    "bounded_memory_slots": 32
+  },
+  "pretraining": {
+    "train_time_sec": 224.86233569995966,
+    "icia_final_train_loss": 0.26357781887054443,
+    "gpt_final_train_loss": 1.5389125347137451
+  },
+  "validation_perplexity": {
+    "icia_val_loss": 0.22879738480202116,
+    "icia_val_ppl": 1.257087308210715,
+    "gpt_val_loss": 1.4855111024687238,
+    "gpt_val_ppl": 4.417222489249923
+  },
+  "needle_retrieval_benchmark": {
+    "1": {
+      "num_distractor_paragraphs": 1,
+      "avg_context_bytes": 700.5,
+      "icia": {
+        "accuracy_pct": 0.0,
+        "memory_slots": 32,
+        "latency_ms_per_sample": 4431.972159992438
+      },
+      "gpt_baseline": {
+        "accuracy_pct": 0.0,
+        "memory_slots": 700,
+        "latency_ms_per_sample": 2544.91114000557
+      }
+    },
+    "2": {
+      "num_distractor_paragraphs": 2,
+      "avg_context_bytes": 984.2,
+      "icia": {
+        "accuracy_pct": 0.0,
+        "memory_slots": 32,
+        "latency_ms_per_sample": 6158.490919996984
+      },
+      "gpt_baseline": {
+        "accuracy_pct": 0.0,
+        "memory_slots": 984,
+        "latency_ms_per_sample": 4856.117219990119
+      }
+    },
+    "4": {
+      "num_distractor_paragraphs": 4,
+      "avg_context_bytes": 1544.4,
+      "icia": {
+        "accuracy_pct": 0.0,
+        "memory_slots": 32,
+        "latency_ms_per_sample": 8738.892629998736
+      },
+      "gpt_baseline": {
+        "accuracy_pct": 0.0,
+        "memory_slots": 1544,
+        "latency_ms_per_sample": 10431.401289999485
+      }
+    },
+    "6": {
+      "num_distractor_paragraphs": 6,
+      "avg_context_bytes": 2140.6,
+      "icia": {
+        "accuracy_pct": 0.0,
+        "memory_slots": 32,
+        "latency_ms_per_sample": 11505.91437999392
+      },
+      "gpt_baseline": {
+        "accuracy_pct": 0.0,
+        "memory_slots": 2140,
+        "latency_ms_per_sample": 20726.561450003646
+      }
+    }
+  }
+}
