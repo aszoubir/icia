@@ -56,7 +56,7 @@ class CollectiveIntentionField:
         if ai.reached_goal:
             return np.zeros_like(ai.pos)
 
-        # 1. Teleological Goal Potential Pull: -∇Ψ_G(S) = (G - S) / ||G - S||
+        # 1. Teleological Goal Potential Pull
         diff_g = ai.goal - ai.pos
         dist_g = np.linalg.norm(diff_g)
         if dist_g < 0.1:
@@ -64,6 +64,20 @@ class CollectiveIntentionField:
             return np.zeros_like(ai.pos)
 
         grad_goal = (diff_g / dist_g) * min(ai.max_speed, dist_g * 1.5)
+
+        # 2. Longitudinal Priority Arbitration in Narrow Bottlenecks
+        # Lower-priority agent yields before entering the bottleneck if higher-priority agent is inside
+        in_bottleneck_zone = abs(ai.pos[0]) < 2.0
+        for aj in self.agents:
+            if aj.agent_id != ai.agent_id and not aj.reached_goal:
+                # If oncoming agent has higher priority and is entering/inside bottleneck
+                is_oncoming = (ai.pos[0] * aj.pos[0] < 0) or (np.dot(diff_g, aj.goal - aj.pos) < 0)
+                if is_oncoming and aj.priority > ai.priority:
+                    # Yield at the entrance if not yet past the center
+                    if (ai.goal[0] > 0 and ai.pos[0] < -1.2) or (ai.goal[0] < 0 and ai.pos[0] > 1.2):
+                        # Wait at entrance until aj clears bottleneck
+                        if abs(aj.pos[0]) < 2.2:
+                            return np.zeros_like(ai.pos)
 
         # 2. Inter-Agent Collision Avoidance Barrier
         grad_avoidance = np.zeros_like(ai.pos)
