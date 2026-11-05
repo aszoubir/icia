@@ -1,7 +1,8 @@
 # INTENTION IS ALL YOU NEED (IIAY)
 ## The Intention-Centred Intelligence Architecture (ICIA)
 
-[![Tests](https://img.shields.io/badge/Tests-47%20Passed-brightgreen)](tests/)
+[![ICIA CI/CD Pipeline](https://github.com/aszoubir/icia/actions/workflows/ci.yml/badge.svg)](https://github.com/aszoubir/icia/actions/workflows/ci.yml)
+[![Tests](https://img.shields.io/badge/Tests-55%20passed%2C%202%20skipped-brightgreen)](tests/)
 [![Python](https://img.shields.io/badge/Python-3.11%2B-blue)](https://www.python.org/)
 [![C99](https://img.shields.io/badge/Embedded-MISRA--C99-orange)](include/icia_core.h)
 [![License](https://img.shields.io/badge/License-MIT-purple.svg)](LICENSE)
