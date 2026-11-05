@@ -41,6 +41,28 @@ jobs:
           icia --help
           icia scorecard
 
+  hardware-verification:
+    name: C99 & Verilog Tier Verification
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Icarus Verilog
+        run: sudo apt-get update && sudo apt-get install -y iverilog
+
+      - name: Compile & Simulate Q16.16 RTL Testbench
+        run: |
+          iverilog -g2001 -o /tmp/tb.vvp hardware/icia_riemannian_core.v hardware/tb_icia_riemannian_core.v
+          vvp /tmp/tb.vvp | tee /tmp/tb.out
+          grep -q "SUCCESS: Test 1" /tmp/tb.out
+          grep -q "SUCCESS: Test 2" /tmp/tb.out
+
+      - name: Compile & Run C99 Single-Header Engine
+        run: |
+          printf '#define ICIA_CORE_IMPLEMENTATION\n#include "include/icia_core.h"\n#include <stdio.h>\nint main(void){icia_system_t s;float g[4]={0,0,0,0};icia_init(&s,g);printf("%%f\\n",(double)icia_compute_control(&s));return 0;}\n' > /tmp/smoke.c
+          gcc -std=c99 -Wall -Wextra /tmp/smoke.c -o /tmp/smoke
+          /tmp/smoke
+
   build-dist:
     name: Build Distribution Packages (sdist & wheel)
     needs: test
