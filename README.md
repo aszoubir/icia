@@ -37,14 +37,14 @@ All metrics are measured on CPU from reproducible experiments in this repository
 
 | Benchmark Domain | Standard Transformer Baseline | ICIA Alternative | Empirical Advantage |
 | :--- | :--- | :--- | :--- |
-| **Long-Horizon Distractors ($L=1024$)** | Attention disperses ($H=5.74$); **$0\%$ Goal Retention** | Active Attractor Anchoring (AIAA); **$100\%$ Goal Retention** | **Infinite robustness; $20.7\times$ faster; $-56.8\%$ params** |
-| **Stochastic Control ($15\%$ slip noise)** | Open-loop derailment; **$26\%$ Success** | Closed-loop innovation feedback; **$100\%$ Success** | **$+74.0\%$ reliability (Zero slip failure)** |
-| **Unannounced Obstacle (Dynamic Wall)**| Blind open-loop execution; **$0\%$ Success (79 crashes)** | Discrepancy Gate ($\|\mathcal{E}_t\| > \tau$); **$100\%$ Success (0 crashes)** | **Zero-shot 1-step replan; $100\%$ collision avoidance** |
-| **NLP Multi-Hop Reasoning ($D=10$)** | Autoregressive CoT ($60$ tokens); **$5,419.10$ ms latency** | $O(1)$ Latent Recurrence; **$7.74$ ms latency (0 tokens emitted)** | **$700\times$ faster; Zero context buffer pollution** |
-| **Natural Language Modeling (ICIA-LM)**| GPT Baseline: **$4.42$ PPL** ($1.44$M params, $O(N)$ KV-cache)| ICIA-LM: **$1.26$ PPL** ($433$k params, $O(1)$ bounded memory)| **$3.5\times$ lower perplexity; $-69.9\%$ params; $66.9\times$ less memory** |
-| **Continuous Physics (+15N Shock)**| Open-loop sequence drift ($0.515$ m drift) | Riemannian potential flow; sub-cm drift ($0.010$ m); $85\ \mu\text{s}$ latency | **$51\times$ tighter drift; $100\%$ shock survival; $0$ RL episodes** |
-| **Multi-Agent Bottleneck Coordination**| Conversational chat ($2,040$ collisions in pileups)| Symplectic Collective Field ($0$ collisions, $100\%$ success)| **Zero communication tokens; $100\%$ deadlock-free passage** |
-| **Hierarchical Impasse Resolution**| Autoregressive inertia ($97$ stuck cycles, $0\%$ success)| Dynamic Sub-goal Re-routing ($0$ stuck cycles, $100\%$ success)| **$1$-step pivot; $0$ wasted tokens; $2.18\times$ faster** |
+| **Long-Horizon Distractors ($L=1024$)** | Attention disperses; Goal Retention $31.3\pm2.5\%$ | Active Attractor Anchoring (AIAA); Goal Retention $40.3\pm20.6\%$ | **$-56.8\%$ params; mean retention gain ($+9\%$) lies *within* ICIA's seed variance (range $26$–$64\%$), not the previously claimed $100\%$** |
+| **Stochastic Control ($15\%$ slip noise)** | Open-loop derailment; $22.0\pm1.0\%$ Success | Closed-loop innovation feedback; $69.3\pm26.1\%$ Success | **$+47\%$ mean reliability, $0$ collisions; but seed-sensitive ($47$–$98\%$), not $100\%$** |
+| **Unannounced Obstacle (Dynamic Wall)**| Blind open-loop execution; $1.3\pm1.2\%$ Success (up to $72$ crashes) | Discrepancy Gate ($\|\mathcal{E}_t\| > \tau$); $75.3\pm17.1\%$ Success ($0$ crashes) | **Zero-shot 1-step replan; $0$ collisions across all seeds; success rate $59$–$93\%$** |
+| **NLP Multi-Hop Reasoning ($D=10$)** | Autoregressive CoT ($60$ tokens); $5{,}512\pm1{,}144$ ms; accuracy $7.8\pm3.5\%$ | $O(1)$ Latent Recurrence; $9.0\pm3.2$ ms ($0$ tokens); accuracy $3.3\pm0\%$ | **$\approx612\times$ lower latency & zero context-buffer pollution (wall-clock, host-load sensitive) — but *lower* accuracy than CoT; the reported $0.995$ verification confidence is *not* calibrated** |
+| **Natural Language Modeling (ICIA-LM)**| GPT Baseline: $4.42\pm0.03$ PPL ($1.44$M params, $O(N)$ KV-cache)| ICIA-LM: $1.29\pm0.03$ PPL ($433$k params, $O(1)$ bounded memory)| **$3.4\times$ lower perplexity; $-69.9\%$ params; $66.9\times$ less cache** (needle-in-a-haystack retrieval scores $0\%/0\%$ for *both* — see §2.1)|
+| **Continuous Physics (+15N Shock)**| Open-loop drift $0.567\pm0.063$ m; $30\pm6\ \mu\text{s}$ decision latency | Teleological potential flow; drift $0.009\pm0.001$ m; $52\pm11\ \mu\text{s}$ latency | **$63\times$ tighter drift; $0$ RL episodes; but impulse-shock survival is *tied* ($100\%/100\%$) and ICIA control latency is *higher* than the baseline (wall-clock, host-load sensitive)** |
+| **Multi-Agent Bottleneck Coordination**| Uncoordinated flow: $260$ collisions (2-agent) / $2{,}040$ (pileup)| Anti-symmetric Collective Field: $0$ collisions| **Zero communication tokens & collision-free; success is *tied* at $100\%/100\%$ — the gain is collision elimination, not throughput** |
+| **Hierarchical Impasse Resolution**| Autoregressive inertia: $0\%$ success, $97$ stuck cycles | Dynamic Sub-goal Re-routing: $100\%$ success, $1$ replan | **$2.18\times$ fewer steps ($120\to55$); deterministic (seed-invariant) and reproduces exactly** |
 | **AST Code Invariants (Synthesis)**| Token hallucination ($33.3\%$ syntax, $0.0\%$ pass rate)| Active Syntax Constraint Invariants ($100\%$ syntax, $100\%$ pass)| **$100\%$ valid ASTs; $5$ syntax/scoping bugs blocked** |
 | **Natural Language Programming**| Negation blindness ($25.0\%$ pass rate, $50\%$ violations)| Repulsive Barrier Potential ($100.0\%$ pass rate, $0\%$ violations)| **$4\times$ higher pass rate; $0\%$ broken prohibitions** |
 | **WebAssembly & Edge Deployment**| Bloated runtime / GPU server requirement| Standalone Wasm Core ($413$ bytes, zero deps)| **Sub-microsecond V8 JIT; 100% offline browser/edge** |
@@ -53,6 +53,20 @@ All metrics are measured on CPU from reproducible experiments in this repository
 | **Hybrid Invariant Governor**| Foundation hallucination & negation failure ($0\%$ pass)| Real-time teleological interception ($100\%$ pass rate)| **$10$ violations repaired; Soft-slack Pareto relaxation** |
 | **T-MCTS Non-Convex Search**| Greedy Flow ($0\%$ success, trapped in dead end)| Teleological MCTS ($100\%$ detour convergence)| **$212$ barrier paths pruned; Escapes concave local traps** |
 | **Multi-File AST Invariants**| Unchecked refactor ($1$ cycle, $1$ missing symbol)| Project Dependency Graph ($100\%$ valid ASTs)| **$1.51\text{ ms}$ repo-wide verification; Zero circular deadlocks** |
+| **Governed Decoding — Real Sampled Decoder (Phase 16)**| Free temperature sampling ($T{=}0.8$, top-$k$ $40$, $16$ samples/task) from a genuinely trained $328$k-param byte-level GPT: syntax $3.3\pm2.6\%$, adherence $3.3\pm2.6\%$, functional $0\pm0\%$ | AST-barrier rejection sampling + intention-synthesized fallback: adherence & functional $100\%$ | **Guarantee holds, cost is exposed: $0$ of $240$ real decoder samples across 3 seeds were accepted (fallback rate $100\%$) — the $100\%$ comes from the fallback, not from governance rescuing decoder output at this scale** |
+
+---
+
+### 2.1 Scope, Baselines, and Limitations (audited 2026-11)
+
+To keep this repository scientifically navigable, the following boundaries are stated explicitly:
+
+1. **Scale:** All learned components are small (≤450k parameters) and trained from scratch on synthetic corpora or hand-designed environments on CPU. Results demonstrate architectural *mechanisms*, not competitive performance against production-scale Transformers or LLMs.
+2. **Simulated code baselines:** The "Autoregressive LLM Baseline" in Phases 9–12 is a scripted greedy emitter over curated candidate lists with known defects ([run_code_synthesis_experiment.py](icia/experiments/run_code_synthesis_experiment.py)), not a sampled pretrained model. These benchmarks validate that AST barrier enforcement *works*; they do not measure an LLM's failure rate. Phase 16 ([run_governed_decoding_benchmark.py](icia/experiments/run_governed_decoding_benchmark.py)) closes this gap with a genuinely trained, temperature-sampled byte-level GPT as the RAW arm; its measured verdict is in note 4 below.
+3. **Reproduced vs. headline numbers:** The seeded multi-run matrix (see §4.1, seeds 42/1/2) reports mean ± std. Several historical headline claims exceeded what the repo's own exported JSON supports, and the scorecard above now shows measured values. Most notably: Phase 2 goal retention at L=1024 is $40.3\pm20.6\%$ for DIVRE-v2 (not $100\%$), and its Standard-Transformer baseline scores $31.3\pm2.5\%$ (not $0\%$) — so the retention advantage is small and inside ICIA's own seed variance. Phase 3 ICIA success is $69\pm26\%$ (clean) and $75\pm17\%$ (roadblock), i.e. robust and collision-free but not the previously stated $100\%$. The qualitative direction (ICIA degrades far less than open-loop attention at long horizons and under unannounced obstacles) does reproduce.
+4. **Known negative results and tied outcomes:** In Phase 16, the real $328$k-param decoder trained on 17 correct programs emits *functional* code $0\%$ of the time and syntactically-valid code only $3.3\%$ of the time at $T{=}0.8$; across 3 seeds, AST-barrier rejection sampling accepted $0$ of $240$ live samples (fallback rate $100\%$). The governed $100\%$ pass rate is therefore produced entirely by the intention-synthesized reference fallback, not by the barrier recovering good decoder output — governance guarantees the *output* of the pipeline, not the *competence* of the base decoder at this scale. Needle-in-a-haystack retrieval in Phase 5 scores $0\%/0\%$ (ICIA/GPT) at *all* distractor depths — the verified Phase 5 advantage is perplexity, not retrieval. In Phase 4 latent multi-hop reasoning, ICIA accuracy ($3.3\pm0\%$) is *lower* than the CoT baseline ($7.8\pm3.5\%$); the real, reproducible gain there is $\approx612\times$ lower latency with zero scratchpad tokens, not correctness — and the `verification_confidence` output ($0.995$) is badly miscalibrated against that accuracy. Several other "wins" are actually ties on the success metric and only differ on a secondary axis: Phase 6 impulse-shock survival is $100\%/100\%$ (the differentiator is $63\times$ lower position drift, and ICIA's control latency is in fact *higher* than the baseline), and Phase 7 multi-agent and Phase 8 impasse success are $100\%$ for the governed arm but Phase 7's baseline also succeeds ($100\%$) — its failure is collisions, not completion.
+5. **Math vocabulary:** "Riemannian"/"symplectic" in module names and older docs refer to Euclidean potential flow with an anti-symmetric rotation term (no metric tensor, no symplectic integrator). The relaxation module is a greedy slack allocator, not an iterative augmented-Lagrangian solver.
+6. **Deployment tiers:** The WebAssembly core is executed and numerically verified under Node/V8 in CI. The C99 header and Verilog RTL now additionally compile/simulate locally (gcc, Icarus Verilog) with Q16.16 parity against the Python simulator.
 
 ---
 
@@ -137,6 +151,29 @@ python -m icia.experiments.run_mcts_experiment
 python -m icia.experiments.run_project_graph_experiment
 ```
 
+### 4.1 Reproducibility & Seeding
+Every stochastic benchmark (Phases 2–8) reads the `ICIA_SEED` environment variable
+(default `42`) and seeds `random`, `numpy`, and `torch` before model construction, so
+results are bit-reproducible per seed:
+
+```bash
+# Single deterministic run
+ICIA_SEED=1 python -m icia.experiments.run_phase2_experiment
+
+# Multi-seed variance matrix + mean/std scorecard
+for s in 42 1 2; do
+  for e in run_phase2_experiment run_phase3_experiment run_nlp_reasoning_experiment; do
+    ICIA_SEED=$s python -m icia.experiments.$e
+    cp icia_*.json scratch/ms/  # per-seed copies consumed by the collector
+  done
+done
+python scripts/collect_seed_stats.py
+```
+
+The seed used by each run is recorded in its exported JSON (`"seed"` field).
+Deterministic rule-based benchmarks (Phases 9–13, 15, WASM, hardware simulator)
+are seed-independent.
+
 ---
 
 ## 5. Research Documentation Index
@@ -163,7 +200,7 @@ The complete scientific documentation comprises 31 foundational specifications a
 18. [`18_icia_language_model_scaling.md`](docs/18_icia_language_model_scaling.md): Dual-stream language modeling architecture and O(1) memory specification.
 19. [`19_icia_lm_empirical_report.md`](docs/19_icia_lm_empirical_report.md): Phase 5 Language Model Empirical Report (1.26 PPL, 66.9x less memory).
 20. [`20_continuous_physics_and_embodied_control.md`](docs/20_continuous_physics_and_embodied_control.md): Continuous Riemannian control and non-linear dynamics specification.
-21. [`21_continuous_physics_empirical_report.md`](docs/21_continuous_physics_empirical_report.md): Phase 6 Embodied Control Empirical Report (100% shock survival, 85 microsecond latency).
+21. [`21_continuous_physics_empirical_report.md`](docs/21_continuous_physics_empirical_report.md): Phase 6 Embodied Control Empirical Report (63× lower position drift vs. baseline; ~45 µs control latency; impulse-shock survival tied with baseline).
 22. [`22_collective_intention_and_multiagent_coordination.md`](docs/22_collective_intention_and_multiagent_coordination.md): Collective Intention Algebra & Symplectic Vorticity.
 23. [`23_multiagent_coordination_report.md`](docs/23_multiagent_coordination_report.md): Phase 7 Multi-Agent Benchmark Report (0 collisions, 0 communication tokens).
 24. [`24_hierarchical_intention_report.md`](docs/24_hierarchical_intention_report.md): Phase 8 Hierarchical Decomposition Report (1-step pivot vs autoregressive inertia).
