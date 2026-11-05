@@ -8,6 +8,7 @@ import json
 import numpy as np
 from icia.tasks.hierarchical_foraging import HierarchicalForagingEnv
 from icia.models.hierarchical_engine import HierarchicalIntentionController, SubGoal
+from icia.experiments.seed_utils import apply_experiment_seed
 
 
 def build_icia_controller() -> HierarchicalIntentionController:
@@ -149,6 +150,7 @@ def run_icia_hierarchical(env: HierarchicalForagingEnv, max_steps: int = 120) ->
 
 
 def run_benchmark():
+    seed = apply_experiment_seed()
     print("=" * 70)
     print("PHASE 8 BENCHMARK: HIERARCHICAL INTENTION DECOMPOSITION & IMPASSE RESOLUTION")
     print("=" * 70)
@@ -178,6 +180,7 @@ def run_benchmark():
         icia_replans.append(res_icia["replan_count"])
 
     summary = {
+        "seed": seed,
         "trials": n_trials,
         "autoregressive_baseline": {
             "success_rate": float(ar_successes / n_trials),

@@ -27,12 +27,8 @@ from icia.nlp.tokenizer import ByteTokenizer
 from icia.nlp.tasks.symbolic_reasoning_generator import SymbolicReasoningGenerator
 from icia.nlp.models.icia_nlp_reasoner import ICIANLPReasoner
 from icia.nlp.models.transformer_nlp_baseline import TransformerNLPBaseline
+from icia.experiments.seed_utils import apply_experiment_seed
 
-
-def set_seed(seed: int = 42):
-    random.seed(seed)
-    np.random.seed(seed)
-    torch.manual_seed(seed)
 
 
 def train_models(
@@ -260,14 +256,14 @@ def evaluate_latent_deliberation_steps(
 
 
 def main():
-    set_seed(42)
+    seed = apply_experiment_seed()
     device = "cpu"
     print("=" * 70)
     print("  ICIA-NLP EXPERIMENT: LATENT RECURRENCE VS. AUTOREGRESSIVE CoT")
     print("=" * 70)
 
     tokenizer = ByteTokenizer()
-    generator = SymbolicReasoningGenerator(tokenizer=tokenizer, seed=42)
+    generator = SymbolicReasoningGenerator(tokenizer=tokenizer, seed=seed)
 
     # Initialize models
     icia_reasoner = ICIANLPReasoner(
@@ -323,6 +319,7 @@ def main():
     # Serialize complete benchmark results
     final_output = {
         "metadata": {
+            "seed": seed,
             "experiment": "ICIA-NLP Symbolic Multi-Step Reasoning",
             "date": "2026-11-04",
             "device": "CPU",

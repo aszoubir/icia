@@ -28,6 +28,7 @@ from icia.models.prompt_conditioned_transformer import IntentionConditionedTrans
 from icia.models.candidate_c_divre import DIVREModel
 from icia.models.candidate_c_divre_v2 import DIVREv2Model
 from icia.tasks.benchmark_suite_v2 import VectorizedBenchmarkGenerator
+from icia.experiments.seed_utils import apply_experiment_seed
 
 
 def count_parameters(model: nn.Module) -> int:
@@ -113,10 +114,12 @@ def run_phase2_benchmark():
     print("Evaluating SAT vs ICT vs DIVRE-v1 vs DIVRE-v2 (AIAA + IGAM)")
     print("=" * 80)
 
+    seed = apply_experiment_seed()
+
     vocab_size = 128
     d_model = 64
     d_ff = 128
-    gen = VectorizedBenchmarkGenerator(vocab_size=vocab_size, d_model=d_model, seed=42)
+    gen = VectorizedBenchmarkGenerator(vocab_size=vocab_size, d_model=d_model, seed=seed)
 
     sat = StandardTransformerModel(vocab_size=vocab_size, d_model=d_model, n_heads=4, n_layers=2, d_ff=d_ff, max_len=2048)
     ict = IntentionConditionedTransformer(vocab_size=vocab_size, d_model=d_model, n_heads=4, n_layers=2, d_ff=d_ff, max_len=2048)
@@ -164,6 +167,7 @@ def run_phase2_benchmark():
         print(f"  * {name}: Immediate Pivot Acc: {res['immediate_pivot_accuracy']:.1f}%, Post-Flip Acc: {res['post_flip_recovery_accuracy']:.1f}%")
 
     final_output = {
+        "seed": seed,
         "parameters": {name: count_parameters(m) for name, (m, _) in models.items()},
         "dpgp_results": dpgp_results,
         "dcpr_results": dcpr_results

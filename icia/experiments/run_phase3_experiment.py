@@ -26,6 +26,7 @@ from icia.models.standard_transformer import StandardTransformerModel
 from icia.models.prompt_conditioned_transformer import IntentionConditionedTransformer
 from icia.models.icia_engine import ICIAAutonomousEngine
 from icia.tasks.multi_step_navigation import StochasticGridNavigationEnv
+from icia.experiments.seed_utils import apply_experiment_seed
 
 
 def train_icia_world_model_and_policy(
@@ -215,7 +216,8 @@ def run_phase3_benchmark():
     print("Environment: Stochastic Slip (p_slip=0.15) & Dynamic Roadblocks")
     print("=" * 80)
 
-    env = StochasticGridNavigationEnv(grid_size=8, p_slip=0.15, max_steps=25, seed=42)
+    seed = apply_experiment_seed()
+    env = StochasticGridNavigationEnv(grid_size=8, p_slip=0.15, max_steps=25, seed=seed)
 
     # Instantiate ICIA Engine and SAT
     engine = ICIAAutonomousEngine(d_obs=64, d_state=64, d_action=4, d_intention=64, num_mem_slots=16)
@@ -242,6 +244,7 @@ def run_phase3_benchmark():
     print(f"  * ICIA Closed-Loop Engine:    Success Rate = {icia_res_roadblock['success_rate']:.1f}%, Collisions = {icia_res_roadblock['collision_count']}, Mean Discrepancy = {icia_res_roadblock['mean_reality_discrepancy']:.4f}")
 
     results = {
+        "seed": seed,
         "benchmark_1_clean": {
             "Open-Loop Transformer (SAT)": sat_res_clean,
             "ICIA Autonomous Engine": icia_res_clean

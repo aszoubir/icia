@@ -23,12 +23,8 @@ from icia.nlp.tokenizer import ByteTokenizer
 from icia.nlp.data.narrative_corpus_generator import NarrativeCorpusGenerator
 from icia.nlp.models.icia_lm import ICIALanguageModel
 from icia.nlp.models.gpt_baseline import GPTLanguageModel
+from icia.experiments.seed_utils import apply_experiment_seed
 
-
-def set_seed(seed: int = 42):
-    random.seed(seed)
-    np.random.seed(seed)
-    torch.manual_seed(seed)
 
 
 def train_language_models(
@@ -270,7 +266,7 @@ def evaluate_needle_retrieval(
 
 
 def main():
-    set_seed(42)
+    seed = apply_experiment_seed()
     device = "cpu"
 
     print("=" * 75)
@@ -278,7 +274,7 @@ def main():
     print("=" * 75)
 
     tokenizer = ByteTokenizer()
-    generator = NarrativeCorpusGenerator(tokenizer=tokenizer, seed=42)
+    generator = NarrativeCorpusGenerator(tokenizer=tokenizer, seed=seed)
 
     # Initialize models
     icia_lm = ICIALanguageModel(
@@ -341,6 +337,7 @@ def main():
     # Serialize complete results
     final_output = {
         "metadata": {
+            "seed": seed,
             "experiment": "ICIA-LM Natural Language Pre-Training & Needle Retrieval",
             "date": "2026-11-04",
             "device": "CPU",

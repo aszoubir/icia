@@ -22,11 +22,8 @@ import numpy as np
 from icia.tasks.continuous_cartpole_env import ContinuousCartPoleEnv
 from icia.models.continuous_icia_controller import ContinuousICIAController
 from icia.models.decision_transformer_baseline import OpenLoopSequenceController
+from icia.experiments.seed_utils import apply_experiment_seed
 
-
-def set_seed(seed: int = 42):
-    random.seed(seed)
-    np.random.seed(seed)
 
 
 def run_nominal_balancing(
@@ -157,7 +154,7 @@ def benchmark_control_latency(controller, env: ContinuousCartPoleEnv, n_steps: i
 
 
 def main():
-    set_seed(42)
+    seed = apply_experiment_seed()
     print("=" * 75)
     print("  ICIA-CONTROL: CONTINUOUS EMBODIED MOTOR CONTROL & IMPULSE RECOVERY")
     print("=" * 75)
@@ -197,6 +194,7 @@ def main():
     # Serialize complete results
     final_output = {
         "metadata": {
+            "seed": seed,
             "experiment": "ICIA Embodied Continuous Motor Control",
             "date": "2026-11-04",
             "environment": "ContinuousCartPole-v1",

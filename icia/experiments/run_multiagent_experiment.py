@@ -20,6 +20,7 @@ import numpy as np
 
 from icia.tasks.multi_agent_coordination import BottleneckCorridorEnv
 from icia.primitives.collective_intention import CollectiveIntentionField, AgentState
+from icia.experiments.seed_utils import apply_experiment_seed
 
 
 def run_uncoordinated_baseline(env: BottleneckCorridorEnv, max_steps: int = 300) -> Dict[str, Any]:
@@ -92,6 +93,7 @@ def run_icia_collective_coordination(env: BottleneckCorridorEnv, max_steps: int 
 
 
 def main():
+    seed = apply_experiment_seed()
     print("=" * 75)
     print("  ICIA-COLLECTIVE: MULTI-AGENT INTENTION COORDINATION BENCHMARK")
     print("=" * 75)
@@ -139,6 +141,7 @@ def main():
 
     final_output = {
         "metadata": {
+            "seed": seed,
             "experiment": "ICIA Multi-Agent Collective Intention Coordination",
             "date": "2026-11-04",
             "communication_tokens_required": 0
