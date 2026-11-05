@@ -1,5 +1,6 @@
 {
   "metadata": {
+    "seed": 42,
     "experiment": "ICIA Embodied Continuous Motor Control",
     "date": "2026-11-04",
     "environment": "ContinuousCartPole-v1",
@@ -78,7 +79,7 @@
     }
   },
   "latency_microseconds": {
-    "icia": 85.71319992188364,
-    "baseline": 32.9508000286296
+    "icia": 64.08139993436635,
+    "baseline": 37.14869997929782
   }
 }

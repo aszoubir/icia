@@ -31,7 +31,7 @@
         "test_count": 4
       },
       "icia_code": "def fibonacci(n):\n    \"\"\"Computes the n-th Fibonacci number iteratively without recursion.\"\"\"\n    if n <= 0: return 0\n    if n == 1: return 1\n    a, b = 0, 1\n    for _ in range(n):\n        a, b = b, a + b\n    return a",
-      "latency_ms": 0.1631999621167779
+      "latency_ms": 0.29250001534819603
     },
     {
       "task_id": "MBPP-C02",
@@ -57,7 +57,7 @@
         "test_count": 3
       },
       "icia_code": "def reverse_inplace(arr):\n    \"\"\"Reverses an array in-place without slicing or reversed().\"\"\"\n    if not arr or len(arr) <= 1: return arr\n    left = 0\n    right = len(arr) - 1\n    while left < right:\n        arr[left], arr[right] = arr[right], arr[left]\n        left += 1\n        right -= 1\n    return arr",
-      "latency_ms": 0.36079995334148407
+      "latency_ms": 0.3333999775350094
     },
     {
       "task_id": "MBPP-C03",
@@ -83,7 +83,7 @@
         "test_count": 3
       },
       "icia_code": "def two_sum(nums, target):\n    \"\"\"Finds indices of two numbers that sum to target in O(N) time without nested loops.\"\"\"\n    if not nums: return []\n    seen = {}\n    for i, num in enumerate(nums):\n        complement = target - num\n        if complement in seen:\n            return [seen[complement], i]\n        seen[num] = i\n    return []",
-      "latency_ms": 0.33900002017617226
+      "latency_ms": 0.5561000434681773
     },
     {
       "task_id": "MBPP-C04",
@@ -110,7 +110,7 @@
         "test_count": 2
       },
       "icia_code": "def top_k_words(words, k):\n    \"\"\"Returns top k most frequent words in list without collections or heapq.\"\"\"\n    if not words or k <= 0: return []\n    counts = {}\n    for w in words:\n        counts[w] = counts.get(w, 0) + 1\n    sorted_words = sorted(counts.keys(), key=lambda w: (-counts[w], words.index(w)))\n    return sorted_words[:k]",
-      "latency_ms": 0.4403999773785472
+      "latency_ms": 0.7247999310493469
     },
     {
       "task_id": "MBPP-C05",
@@ -136,7 +136,7 @@
         "test_count": 4
       },
       "icia_code": "def check_brackets(code):\n    \"\"\"Validates balanced delimiters using an invariant stack without regex.\"\"\"\n    if not code: return True\n    mapping = {')': '(', ']': '[', '}': '{'}\n    stack = []\n    for ch in code:\n        if ch in '([{':\n            stack.append(ch)\n        elif ch in mapping:\n            if not stack or stack[-1] != mapping[ch]:\n                return False\n            stack.pop()\n    return len(stack) == 0",
-      "latency_ms": 0.25159993674606085
+      "latency_ms": 0.37519994657486677
     }
   ]
 }

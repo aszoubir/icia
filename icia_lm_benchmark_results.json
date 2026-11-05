@@ -1,5 +1,6 @@
 {
   "metadata": {
+    "seed": 42,
     "experiment": "ICIA-LM Natural Language Pre-Training & Needle Retrieval",
     "date": "2026-11-04",
     "device": "CPU",
@@ -9,7 +10,7 @@
     "bounded_memory_slots": 32
   },
   "pretraining": {
-    "train_time_sec": 224.86233569995966,
+    "train_time_sec": 257.20156339998357,
     "icia_final_train_loss": 0.26357781887054443,
     "gpt_final_train_loss": 1.5389125347137451
   },
@@ -26,12 +27,12 @@
       "icia": {
         "accuracy_pct": 0.0,
         "memory_slots": 32,
-        "latency_ms_per_sample": 4431.972159992438
+        "latency_ms_per_sample": 5736.274919996504
       },
       "gpt_baseline": {
         "accuracy_pct": 0.0,
         "memory_slots": 700,
-        "latency_ms_per_sample": 2544.91114000557
+        "latency_ms_per_sample": 2748.6457300023176
       }
     },
     "2": {
@@ -40,12 +41,12 @@
       "icia": {
         "accuracy_pct": 0.0,
         "memory_slots": 32,
-        "latency_ms_per_sample": 6158.490919996984
+        "latency_ms_per_sample": 5498.390869994182
       },
       "gpt_baseline": {
         "accuracy_pct": 0.0,
         "memory_slots": 984,
-        "latency_ms_per_sample": 4856.117219990119
+        "latency_ms_per_sample": 5546.7246099957265
       }
     },
     "4": {
@@ -54,12 +55,12 @@
       "icia": {
         "accuracy_pct": 0.0,
         "memory_slots": 32,
-        "latency_ms_per_sample": 8738.892629998736
+        "latency_ms_per_sample": 12470.07895000279
       },
       "gpt_baseline": {
         "accuracy_pct": 0.0,
         "memory_slots": 1544,
-        "latency_ms_per_sample": 10431.401289999485
+        "latency_ms_per_sample": 9722.63623001054
       }
     },
     "6": {
@@ -68,12 +69,12 @@
       "icia": {
         "accuracy_pct": 0.0,
         "memory_slots": 32,
-        "latency_ms_per_sample": 11505.91437999392
+        "latency_ms_per_sample": 11604.081790009513
       },
       "gpt_baseline": {
         "accuracy_pct": 0.0,
         "memory_slots": 2140,
-        "latency_ms_per_sample": 20726.561450003646
+        "latency_ms_per_sample": 17135.992489999626
       }
     }
   }

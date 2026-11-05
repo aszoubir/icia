@@ -23,7 +23,7 @@
         "Pivoted in 1-step to ICIA invariant-bounded implementation."
       ],
       "tests_passed": true,
-      "latency_ms": 1.0022999485954642
+      "latency_ms": 4.42120002117008
     },
     {
       "task_id": "MBPP-C02",
@@ -35,7 +35,7 @@
         "Pivoted in 1-step to ICIA invariant-bounded implementation."
       ],
       "tests_passed": true,
-      "latency_ms": 0.9991000406444073
+      "latency_ms": 1.2874999083578587
     },
     {
       "task_id": "MBPP-C03",
@@ -47,7 +47,7 @@
         "Pivoted in 1-step to ICIA invariant-bounded implementation."
       ],
       "tests_passed": true,
-      "latency_ms": 2.222699928097427
+      "latency_ms": 1.9772000377997756
     },
     {
       "task_id": "MBPP-C04",
@@ -60,7 +60,7 @@
         "Pivoted in 1-step to ICIA invariant-bounded implementation."
       ],
       "tests_passed": true,
-      "latency_ms": 1.9094999879598618
+      "latency_ms": 9.003099985420704
     },
     {
       "task_id": "MBPP-C05",
@@ -72,7 +72,7 @@
         "Pivoted in 1-step to ICIA invariant-bounded implementation."
       ],
       "tests_passed": true,
-      "latency_ms": 1.4875999186187983
+      "latency_ms": 3.491499926894903
     }
   ]
 }

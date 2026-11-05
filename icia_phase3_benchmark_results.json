@@ -1,28 +1,29 @@
 {
+  "seed": 42,
   "benchmark_1_clean": {
     "Open-Loop Transformer (SAT)": {
-      "success_rate": 26.0,
+      "success_rate": 23.0,
       "avg_steps": 12.0,
       "collision_count": 0
     },
     "ICIA Autonomous Engine": {
-      "success_rate": 100.0,
-      "avg_steps": 13.77,
+      "success_rate": 98.0,
+      "avg_steps": 14.43,
       "collision_count": 0,
-      "mean_reality_discrepancy": 8.838108851213388
+      "mean_reality_discrepancy": 9.496903776220528
     }
   },
   "benchmark_2_roadblock": {
     "Open-Loop Transformer (SAT)": {
-      "success_rate": 0.0,
+      "success_rate": 2.0,
       "avg_steps": 12.0,
-      "collision_count": 79
+      "collision_count": 72
     },
     "ICIA Autonomous Engine": {
-      "success_rate": 100.0,
-      "avg_steps": 14.29,
+      "success_rate": 93.0,
+      "avg_steps": 14.69,
       "collision_count": 0,
-      "mean_reality_discrepancy": 8.826043549157628
+      "mean_reality_discrepancy": 9.439944622604969
     }
   }
 }

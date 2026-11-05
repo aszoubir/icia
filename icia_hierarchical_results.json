@@ -1,4 +1,5 @@
 {
+  "seed": 42,
   "trials": 20,
   "autoregressive_baseline": {
     "success_rate": 0.0,

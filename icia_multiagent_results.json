@@ -1,5 +1,6 @@
 {
   "metadata": {
+    "seed": 42,
     "experiment": "ICIA Multi-Agent Collective Intention Coordination",
     "date": "2026-11-04",
     "communication_tokens_required": 0

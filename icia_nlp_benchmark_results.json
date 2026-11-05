@@ -1,5 +1,6 @@
 {
   "metadata": {
+    "seed": 42,
     "experiment": "ICIA-NLP Symbolic Multi-Step Reasoning",
     "date": "2026-11-04",
     "device": "CPU",
@@ -16,13 +17,13 @@
         "mean_abs_error": 10.554977416992188,
         "scratchpad_tokens": 0,
         "final_verification_confidence": 0.9968611001968384,
-        "latency_ms_per_sample": 2.09864666685462
+        "latency_ms_per_sample": 2.0735716660662242
       },
       "transformer_cot": {
         "accuracy_pct": 8.33333358168602,
         "mean_abs_error": 9.047269821166992,
         "scratchpad_tokens": 60,
-        "latency_ms_per_sample": 979.2198616662063
+        "latency_ms_per_sample": 777.2557716680845
       }
     },
     "2": {
@@ -32,13 +33,13 @@
         "mean_abs_error": 8.715459823608398,
         "scratchpad_tokens": 0,
         "final_verification_confidence": 0.9968481063842773,
-        "latency_ms_per_sample": 3.0368299999584756
+        "latency_ms_per_sample": 2.7785550007441393
       },
       "transformer_cot": {
         "accuracy_pct": 6.666667014360428,
         "mean_abs_error": 8.361798286437988,
         "scratchpad_tokens": 60,
-        "latency_ms_per_sample": 1594.1100316665445
+        "latency_ms_per_sample": 1250.7114783336874
       }
     },
     "5": {
@@ -48,13 +49,13 @@
         "mean_abs_error": 9.945226669311523,
         "scratchpad_tokens": 0,
         "final_verification_confidence": 0.9968532919883728,
-        "latency_ms_per_sample": 4.667390000152712
+        "latency_ms_per_sample": 4.174804999881114
       },
       "transformer_cot": {
         "accuracy_pct": 6.666667014360428,
         "mean_abs_error": 9.42094612121582,
         "scratchpad_tokens": 60,
-        "latency_ms_per_sample": 2667.3751466655326
+        "latency_ms_per_sample": 2140.8326549998797
       }
     },
     "10": {
@@ -64,13 +65,13 @@
         "mean_abs_error": 9.867884635925293,
         "scratchpad_tokens": 0,
         "final_verification_confidence": 0.9968664050102234,
-        "latency_ms_per_sample": 7.739396666875109
+        "latency_ms_per_sample": 6.684676666433613
       },
       "transformer_cot": {
         "accuracy_pct": 11.666666716337204,
         "mean_abs_error": 10.681380271911621,
         "scratchpad_tokens": 60,
-        "latency_ms_per_sample": 5419.102986667228
+        "latency_ms_per_sample": 5381.25582166637
       }
     }
   },

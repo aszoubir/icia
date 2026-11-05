@@ -9,5 +9,5 @@
   "mcts_path_length": 20,
   "mcts_nodes_expanded": 205,
   "mcts_barrier_prunes": 212,
-  "mcts_latency_ms": 278.5284999990836
+  "mcts_latency_ms": 870.3859000233933
 }

@@ -11,5 +11,5 @@
     "unresolved_count": 0,
     "explanation": "All project-scale multi-file AST dependency invariants strictly satisfied."
   },
-  "verification_latency_ms": 1.5147000085562468
+  "verification_latency_ms": 14.641800080426037
 }
