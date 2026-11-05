@@ -1,6 +1,6 @@
 """
 ICIA Primitive: Collective Intention Field & Multi-Agent Coordination Algebra
-Implements coupled Riemannian teleological potential flow with inter-agent barrier repulsion.
+Implements coupled teleological potential flow on the 2D Euclidean plane with inter-agent barrier repulsion.
 """
 
 import math
@@ -81,7 +81,8 @@ class CollectiveIntentionField:
                 overlap = min_dist - dist_agents
                 # Radial log-barrier repulsive force
                 radial = (diff_agents / (dist_agents + 1e-6)) * (overlap / (dist_agents - (ai.radius + aj.radius) + 1e-4))
-                # Symplectic gyroscopic curl term: J = [[0, -1], [1, 0]] inherently anti-symmetric!
+                # Anti-symmetric rotation term (J = [[0, -1], [1, 0]]): torque that breaks
+                # head-on deadlocks without adding to the radial potential energy.
                 tangential = np.array([-diff_agents[1], diff_agents[0]]) / (dist_agents + 1e-6)
                 p_ratio = aj.priority / (ai.priority + 1e-6)
                 grad_avoidance += (radial + 0.8 * tangential) * (1.0 + p_ratio)

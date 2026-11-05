@@ -1,7 +1,8 @@
 """
-Soft-Slack Augmented Lagrangian Barrier Relaxation for ICIA.
-Solves the Infeasible Optimization Problem when barrier constraints conflict,
-enabling graceful Pareto-optimal constraint relaxation while preserving hard safety invariants.
+Soft-Slack Barrier Relaxation for ICIA.
+Greedy triage policy for infeasible constraint sets: allocates minimal slack to soft
+constraints while refusing relaxation of hard safety invariants. Approximates the
+augmented-Lagrangian objective below as a one-shot allocator (no iterative minimization).
 """
 
 from __future__ import annotations
@@ -40,7 +41,7 @@ class RelaxationDiagnosis:
 
 class RelaxedBarrierOptimizer:
     """
-    Augmented Lagrangian barrier solver with slack variables:
+    One-shot soft-slack allocator. Target objective (approximated, not minimized iteratively):
     min_S  Psi_G(S) + sum_j [ lambda_j (c_j(S) - xi_j) + 0.5 * rho * max(0, c_j(S) - xi_j)^2 + w_j * xi_j ]
     """
 

@@ -1,6 +1,6 @@
 """
 ICIA Continuous Controller: Continuous Teleological Potential Flow with Reality Innovation Gate
-Directly evaluates Riemannian gradient flow:
+Directly evaluates Euclidean teleological gradient flow (identity metric, hand-tuned gains):
   u_t = - K_goal * ∇Ψ_G(S) - mu * ∇B(x) + K_error * E_t
 """
 
@@ -45,7 +45,7 @@ class ContinuousICIAController:
 
     def internal_world_model_step(self, state: np.ndarray, action: float) -> np.ndarray:
         """
-        Differentiable internal forward physics model W_theta.
+        Internal forward physics model: analytic cartpole dynamics (closed-form, not learned).
         Predicts expected next state under nominal dynamics.
         """
         x, x_dot, theta, theta_dot = state
