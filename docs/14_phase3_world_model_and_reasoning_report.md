@@ -1,4 +1,9 @@
 # PROJECT IIAY: PHASE 3 SCIENTIFIC RESEARCH REPORT
+
+
+> **Measured corrections (2026-11-05, seeded audit).** The numbers below supersede headline claims in this document. Authoritative values are the seed-42/1/2 mean±std scorecard in README §2 (reproducibility per §4.1, `scripts/collect_seed_stats.py`), with caveats in README §2.1.
+> - ICIA success rates measure 69.3±26.1% (clean) and 75.3±17.1% (roadblock) across seeds 42/1/2, not 100%; the qualitative closed-loop ≫ open-loop result and zero collisions hold.
+>
 ## THE STAGE 9 INTEGRATED AUTONOMOUS ENGINE: MULTI-STEP REASONING, CAUSAL WORLD MODELS & CLOSED-LOOP REALITY RECOVERY
 
 **Project Codename:** IIAY (Intention Is All You Need)  

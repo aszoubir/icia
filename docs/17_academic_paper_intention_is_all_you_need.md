@@ -1,5 +1,11 @@
 # INTENTION IS ALL YOU NEED: A POST-TRANSFORMER ARCHITECTURE FOR LATENT TELEOLOGICAL COMPUTATION
 
+
+> **Measured corrections (2026-11-05, seeded audit).** The numbers below supersede headline claims in this document. Authoritative values are the seed-42/1/2 mean±std scorecard in README §2 (reproducibility per §4.1, `scripts/collect_seed_stats.py`), with caveats in README §2.1.
+> - The results table reflects pre-audit single-run headlines. Measured 3-seed values, tied outcomes, and negative results are authoritative in README §2 and §2.1.
+> - Most consequential corrections: Phase 2 retention 40.3±20.6% (baseline 31.3%, not 0%); Phase 3 not 100%; Phase 4 accuracy below CoT; Phase 5 needle retrieval 0%/0%; decorative math vocabulary per README §2.1 note 5.
+>
+
 **Authors:** Foundational AI Architecture Research Consortium  
 **Classification:** Foundational Architecture Research / Post-Transformer Paradigm  
 **Codename:** Project IIAY (Intention Is All You Need)  

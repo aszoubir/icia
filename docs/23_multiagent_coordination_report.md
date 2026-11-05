@@ -1,5 +1,10 @@
 # MASTER EMPIRICAL REPORT 23: COLLECTIVE INTENTION FIELD & MULTI-AGENT COORDINATION
 
+
+> **Measured corrections (2026-11-05, seeded audit).** The numbers below supersede headline claims in this document. Authoritative values are the seed-42/1/2 mean±std scorecard in README §2 (reproducibility per §4.1, `scripts/collect_seed_stats.py`), with caveats in README §2.1.
+> - Success is 100%/100% TIED between arms; the reproducible differentiator is collisions only (baseline 260 two-agent / 2,040 pileup → 0 for the collective field, with 0 communication tokens).
+>
+
 **Project Codename:** IIAY (Intention Is All You Need)  
 **Architecture:** ICIA-Collective (Coupled Teleological Potential Fields) vs. Uncoordinated Baseline  
 **Date:** 2026-11-04  

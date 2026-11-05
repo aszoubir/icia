@@ -1,4 +1,9 @@
 # EMPIRICAL RESEARCH REPORT 31: Repository-Scale Multi-File AST Dependency Invariants (Phase 15)
+
+
+> **Measured corrections (2026-11-05, seeded audit).** The numbers below supersede headline claims in this document. Authoritative values are the seed-42/1/2 mean±std scorecard in README §2 (reproducibility per §4.1, `scripts/collect_seed_stats.py`), with caveats in README §2.1.
+> - Dependency-graph invariant checks are deterministic and reproduce exactly.
+>
 ## Inter-Procedural Symbol Graphs, Circular Import Elimination, and Multi-Module Refactoring
 
 **Author:** Foundational AI Architecture Research Consortium  

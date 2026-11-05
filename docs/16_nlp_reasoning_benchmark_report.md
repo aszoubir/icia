@@ -1,5 +1,11 @@
 # MASTER SCIENTIFIC REPORT 16: NATURAL LANGUAGE & SYMBOLIC MULTI-STEP REASONING (ICIA-NLP)
 
+
+> **Measured corrections (2026-11-05, seeded audit).** The numbers below supersede headline claims in this document. Authoritative values are the seed-42/1/2 mean±std scorecard in README §2 (reproducibility per §4.1, `scripts/collect_seed_stats.py`), with caveats in README §2.1.
+> - ICIA accuracy at D=10 is 3.3±0%, *below* the CoT baseline's 7.8±3.5%; the verified advantage is latency (~612×, host-load sensitive) with 0 emitted tokens.
+> - `final_verification_confidence` ≈0.995 across seeds is miscalibrated relative to 3.3% accuracy.
+>
+
 **Project Codename:** IIAY (Intention Is All You Need)  
 **Architecture:** ICIA-NLP (Intention-Centred Language & Symbolic Reasoner) vs. Parameter-Matched Causal Transformer  
 **Status:** Empirical Benchmark Validation  

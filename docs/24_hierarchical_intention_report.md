@@ -1,5 +1,10 @@
 # EMPIRICAL REPORT 24: PHASE 8 HIERARCHICAL INTENTION DECOMPOSITION & IMPASSE RESOLUTION
 
+
+> **Measured corrections (2026-11-05, seeded audit).** The numbers below supersede headline claims in this document. Authoritative values are the seed-42/1/2 mean±std scorecard in README §2 (reproducibility per §4.1, `scripts/collect_seed_stats.py`), with caveats in README §2.1.
+> - All figures are deterministic and reproduce exactly across seeds (AR baseline 0% success / 97 stuck cycles; hierarchical ICIA 100% / 1 replan / 120→55 steps).
+>
+
 **Architecture:** ICIA Hierarchical Intention Engine  
 **Date:** 2026-11-04  
 **Status:** Validated Empirical Report  

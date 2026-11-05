@@ -1,5 +1,10 @@
 # FOUNDATIONAL SPECIFICATION & EMPIRICAL REPORT 26: NATURAL LANGUAGE UNDERSTANDING & TELEOLOGICAL PROGRAMMING
 
+
+> **Measured corrections (2026-11-05, seeded audit).** The numbers below supersede headline claims in this document. Authoritative values are the seed-42/1/2 mean±std scorecard in README §2 (reproducibility per §4.1, `scripts/collect_seed_stats.py`), with caveats in README §2.1.
+> - The 100% governed pass rate reproduces, but the baseline is scripted (README §2.1 note 2). With a real trained decoder sampling at temperature (Phase 16), 0 of 240 live samples passed the barriers — the governed 100% came entirely from the intention-synthesized fallback.
+>
+
 **Architecture:** ICIA Natural Language Programming Subsystem  
 **Date:** 2026-11-04  
 **Status:** Validated Empirical Report  

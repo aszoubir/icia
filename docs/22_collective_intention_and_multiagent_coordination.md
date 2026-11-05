@@ -1,5 +1,10 @@
 # FOUNDATIONAL SPECIFICATION 22: COLLECTIVE INTENTION ALGEBRA & MULTI-AGENT COORDINATION
 
+
+> **Measured corrections (2026-11-05, seeded audit).** The numbers below supersede headline claims in this document. Authoritative values are the seed-42/1/2 mean±std scorecard in README §2 (reproducibility per §4.1, `scripts/collect_seed_stats.py`), with caveats in README §2.1.
+> - "Symplectic" refers to an anti-symmetric rotation term under plain Euler integration, not a symplectic integrator (README §2.1 note 5).
+>
+
 **Project Codename:** IIAY (Intention Is All You Need)  
 **Architecture:** ICIA-Collective (Multi-Agent Intention Coordination)  
 **Status:** Canonical Foundation Document  

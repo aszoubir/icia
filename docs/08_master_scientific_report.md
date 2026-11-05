@@ -1,4 +1,12 @@
 # PROJECT IIAY: MASTER SCIENTIFIC RESEARCH REPORT
+
+
+> **Measured corrections (2026-11-05, seeded audit).** The numbers below supersede headline claims in this document. Authoritative values are the seed-42/1/2 mean±std scorecard in README §2 (reproducibility per §4.1, `scripts/collect_seed_stats.py`), with caveats in README §2.1.
+> - Phase 2 goal retention at L=1024 measures 40.3±20.6% for DIVRE-v2 (not 100%) against a 31.3±2.5% transformer baseline (not 0%); the gain is inside ICIA's seed variance.
+> - Phase 3 ICIA success measures 69.3±26.1% (clean) / 75.3±17.1% (roadblock), not 100%; zero collisions does reproduce.
+> - Phase 4 accuracy (3.3±0%) is *lower* than the CoT baseline (7.8±3.5%); the reproducible win is ~612× latency with zero scratchpad tokens; `verification_confidence` (~0.995) is not calibrated.
+> - "Riemannian"/"symplectic"/"Lagrangian" vocabulary is decorative: Euclidean potential flow, an anti-symmetric rotation term, and a greedy slack allocator (README §2.1 note 5).
+>
 ## THE DISCOVERY, MATHEMATICAL FORMALIZATION, AND VALIDATION OF INTENTION-CENTRED INTELLIGENCE ARCHITECTURE (ICIA)
 
 **Project Codename:** IIAY (Intention Is All You Need)  

@@ -1,5 +1,10 @@
 # FOUNDATIONAL SPECIFICATION & EMPIRICAL REPORT 25: INTENTION-GUIDED CODE SYNTHESIS & AST INVARIANTS
 
+
+> **Measured corrections (2026-11-05, seeded audit).** The numbers below supersede headline claims in this document. Authoritative values are the seed-42/1/2 mean±std scorecard in README §2 (reproducibility per §4.1, `scripts/collect_seed_stats.py`), with caveats in README §2.1.
+> - AST-barrier results reproduce exactly, but the "LLM baseline" is a scripted greedy emitter over curated defective candidates, not a sampled model (README §2.1 note 2).
+>
+
 **Architecture:** ICIA Code Generation Subsystem  
 **Date:** 2026-11-04  
 **Status:** Validated Empirical Report  

@@ -1,4 +1,9 @@
 # EMPIRICAL RESEARCH REPORT 28: Negative Constraint Coding & Negation Blindness Resolution (Phase 12)
+
+
+> **Measured corrections (2026-11-05, seeded audit).** The numbers below supersede headline claims in this document. Authoritative values are the seed-42/1/2 mean±std scorecard in README §2 (reproducibility per §4.1, `scripts/collect_seed_stats.py`), with caveats in README §2.1.
+> - Adherence/pass claims reproduce, but they measure barrier enforcement over scripted candidate lists, not negation blindness of a real LLM (README §2.1 note 2). See the Phase 16 governed-decoding row in README §2 for the real-decoder verdict.
+>
 ## HumanEval / MBPP-Hard Constrained Algorithmic Benchmark
 
 **Author:** Foundational AI Architecture Research Consortium  

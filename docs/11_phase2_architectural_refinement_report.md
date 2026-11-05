@@ -1,4 +1,10 @@
 # PROJECT IIAY: PHASE 2 SCIENTIFIC RESEARCH REPORT
+
+
+> **Measured corrections (2026-11-05, seeded audit).** The numbers below supersede headline claims in this document. Authoritative values are the seed-42/1/2 mean±std scorecard in README §2 (reproducibility per §4.1, `scripts/collect_seed_stats.py`), with caveats in README §2.1.
+> - Headline "100% goal retention" measures 40.3±20.6% (range 26–64%) for DIVRE-v2 at L=1024; the SAT baseline scores 31.3±2.5% (not 0%).
+> - The Intention-Conditioned Transformer variant scores 45±13%, at or above DIVRE-v2 — the AIAA-mechanism attribution is not established at this scale.
+>
 ## ARCHITECTURAL REFINEMENT: ATTRACTOR ANCHORING & ADAPTIVE ASSOCIATIVE MEMORY (ICIA-v2)
 
 **Project Codename:** IIAY (Intention Is All You Need)  

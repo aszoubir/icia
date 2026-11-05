@@ -1,4 +1,9 @@
 # EMPIRICAL RESEARCH REPORT 29: Hybrid Foundation Architecture & Soft-Slack Invariant Relaxation (Phase 13)
+
+
+> **Measured corrections (2026-11-05, seeded audit).** The numbers below supersede headline claims in this document. Authoritative values are the seed-42/1/2 mean±std scorecard in README §2 (reproducibility per §4.1, `scripts/collect_seed_stats.py`), with caveats in README §2.1.
+> - The "Pareto-Lagrangian relaxation" is a one-shot greedy slack allocator (no iterative solver); the 100% governed pass rate holds only because the baseline is scripted and the fallback is a hand-written reference (README §2.1 notes 2 and 5; Phase 16 row in README §2).
+>
 ## Bridging Web-Scale Semantic LLMs with the ICIA Teleological Governor
 
 **Author:** Foundational AI Architecture Research Consortium  

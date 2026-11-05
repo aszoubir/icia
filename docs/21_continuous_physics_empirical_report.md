@@ -1,5 +1,11 @@
 # MASTER EMPIRICAL REPORT 21: CONTINUOUS PHYSICS & EMBODIED TELEOLOGICAL MOTOR CONTROL
 
+
+> **Measured corrections (2026-11-05, seeded audit).** The numbers below supersede headline claims in this document. Authoritative values are the seed-42/1/2 mean±std scorecard in README §2 (reproducibility per §4.1, `scripts/collect_seed_stats.py`), with caveats in README §2.1.
+> - The genuine result is a 63× drift reduction (0.009±0.001 m vs 0.567±0.063 m).
+> - Impulse-shock survival is a 100%/100% TIE with the baseline, and ICIA control latency (~52±11 µs) is *higher* than the baseline's (~30±6 µs); both latency figures are host-load sensitive.
+>
+
 **Project Codename:** IIAY (Intention Is All You Need)  
 **Architecture:** ICIA-Control (Continuous Teleological Embodied Engine) vs. Open-Loop Sequence Baseline  
 **Date:** 2026-11-04  

@@ -1,4 +1,9 @@
 # EMPIRICAL RESEARCH REPORT 30: Teleological Monte Carlo Tree Search (Phase 14)
+
+
+> **Measured corrections (2026-11-05, seeded audit).** The numbers below supersede headline claims in this document. Authoritative values are the seed-42/1/2 mean±std scorecard in README §2 (reproducibility per §4.1, `scripts/collect_seed_stats.py`), with caveats in README §2.1.
+> - Search results are deterministic and reproduce; the tree search operates over analytic/heuristic dynamics, not the learned world model the motivation implies.
+>
 ## Test-Time Compute Scaling over Latent World Models (T-MCTS)
 
 **Author:** Foundational AI Architecture Research Consortium  

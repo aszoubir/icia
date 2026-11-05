@@ -1,5 +1,11 @@
 # MASTER EMPIRICAL REPORT 19: ICIA-LM FRONTIER SCALING & NATURAL LANGUAGE BENCHMARK
 
+
+> **Measured corrections (2026-11-05, seeded audit).** The numbers below supersede headline claims in this document. Authoritative values are the seed-42/1/2 mean±std scorecard in README §2 (reproducibility per §4.1, `scripts/collect_seed_stats.py`), with caveats in README §2.1.
+> - Perplexity claim reproduces (ICIA 1.288±0.026 vs GPT 4.420±0.026) at -69.9% parameters.
+> - Hard negative: needle-in-a-haystack retrieval scores 0% for *both* models at all distractor depths across all seeds.
+>
+
 **Project Codename:** IIAY (Intention Is All You Need)  
 **Architecture:** ICIA-LM (Intention-Centred Language Model) vs. Parameter-Matched Causal GPT Baseline  
 **Date:** 2026-11-04  
