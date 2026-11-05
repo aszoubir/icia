@@ -1,0 +1,119 @@
+{
+  "seed": 42,
+  "decoder_params": 327910,
+  "train_steps": 400,
+  "num_samples_per_challenge": 16,
+  "temperature": 0.8,
+  "aggregate": {
+    "raw_syntax_pct": 2.5,
+    "raw_adherence_pct": 2.5,
+    "raw_pass_pct": 0.0,
+    "governed_syntax_pct": 100.0,
+    "governed_adherence_pct": 100.0,
+    "governed_pass_pct": 100.0,
+    "mean_governance_attempts": 16.0,
+    "fallback_rate_pct": 100.0
+  },
+  "per_task": {
+    "MBPP-C01": {
+      "name": "iterative_fibonacci",
+      "raw": {
+        "syntax_pct": 6.25,
+        "adherence_pct": 6.25,
+        "pass_pct": 0.0,
+        "violation_examples": [
+          "syntax_error",
+          "syntax_error",
+          "syntax_error"
+        ]
+      },
+      "governed": {
+        "accepted_sample_index": null,
+        "fallback_used": true,
+        "syntax": true,
+        "adherent": true,
+        "tests_pass": true
+      }
+    },
+    "MBPP-C02": {
+      "name": "reverse_inplace",
+      "raw": {
+        "syntax_pct": 0.0,
+        "adherence_pct": 0.0,
+        "pass_pct": 0.0,
+        "violation_examples": [
+          "syntax_error",
+          "syntax_error",
+          "syntax_error"
+        ]
+      },
+      "governed": {
+        "accepted_sample_index": null,
+        "fallback_used": true,
+        "syntax": true,
+        "adherent": true,
+        "tests_pass": true
+      }
+    },
+    "MBPP-C03": {
+      "name": "two_sum_linear",
+      "raw": {
+        "syntax_pct": 0.0,
+        "adherence_pct": 0.0,
+        "pass_pct": 0.0,
+        "violation_examples": [
+          "syntax_error",
+          "syntax_error",
+          "syntax_error"
+        ]
+      },
+      "governed": {
+        "accepted_sample_index": null,
+        "fallback_used": true,
+        "syntax": true,
+        "adherent": true,
+        "tests_pass": true
+      }
+    },
+    "MBPP-C04": {
+      "name": "top_k_frequent",
+      "raw": {
+        "syntax_pct": 0.0,
+        "adherence_pct": 0.0,
+        "pass_pct": 0.0,
+        "violation_examples": [
+          "syntax_error",
+          "syntax_error",
+          "syntax_error"
+        ]
+      },
+      "governed": {
+        "accepted_sample_index": null,
+        "fallback_used": true,
+        "syntax": true,
+        "adherent": true,
+        "tests_pass": true
+      }
+    },
+    "MBPP-C05": {
+      "name": "bracket_validator",
+      "raw": {
+        "syntax_pct": 6.25,
+        "adherence_pct": 6.25,
+        "pass_pct": 0.0,
+        "violation_examples": [
+          "syntax_error",
+          "syntax_error",
+          "syntax_error"
+        ]
+      },
+      "governed": {
+        "accepted_sample_index": null,
+        "fallback_used": true,
+        "syntax": true,
+        "adherent": true,
+        "tests_pass": true
+      }
+    }
+  }
+}

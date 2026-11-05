@@ -137,21 +137,32 @@ class GPTLanguageModel(nn.Module):
         self,
         prompt_ids: torch.Tensor,
         max_new_tokens: int = 40,
-        stop_token: int = 2
+        stop_token: int = 2,
+        temperature: float = 0.0,
+        top_k: int = 0
     ) -> Tuple[torch.Tensor, int]:
         self.eval()
         with torch.no_grad():
             curr_tokens = prompt_ids.clone()
             tokens_generated = 0
-            
+
             for _ in range(max_new_tokens):
                 out = self.forward(curr_tokens, causal=True)
-                next_logits = out["logits"][:, -1, :]
-                next_tok = torch.argmax(next_logits, dim=-1, keepdim=True)
+                logits = out["logits"][:, -1, :]
+
+                if temperature > 0.0:
+                    if 0 < top_k < logits.size(-1):
+                        vals, idx = logits.topk(top_k, dim=-1)
+                        logits = torch.full_like(logits, -1e9).scatter_(1, idx, vals)
+                    probs = F.softmax(logits / temperature, dim=-1)
+                    next_tok = torch.multinomial(probs, num_samples=1)
+                else:
+                    next_tok = logits.argmax(dim=-1, keepdim=True)
+
                 curr_tokens = torch.cat([curr_tokens, next_tok], dim=1)
                 tokens_generated += 1
-                
+
                 if (next_tok == stop_token).all():
                     break
-                    
+
             return curr_tokens, tokens_generated
